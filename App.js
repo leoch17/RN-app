@@ -1,21 +1,16 @@
+import 'react-native-gesture-handler';
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Hola Diego</Text>
-      <StatusBar style="auto" />
-    </View>
+import AppNavigator from './navigation/AppNavigator';
+
+const App = () => {
+  return(
+    <SafeAreaProvider>
+      <AppNavigator />
+    </SafeAreaProvider>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+export default App;
