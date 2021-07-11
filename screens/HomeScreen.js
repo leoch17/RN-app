@@ -1,14 +1,39 @@
-import React from 'react';
-import { View, Text, Button } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, StyleSheet, ActivityIndicator } from 'react-native';
+import { Colors } from './../constants/index';
+import { useDispatch } from 'react-redux';
+
+import { getLists } from '../store/actions/listActions';
+import globalStyles from './../styles/global';
+import Lists from '../componentes/Lists';
+import CustomButton from '../componentes/CustomButton';
 
 const HomeScreen = ({ navigation }) => {
+    const [loading, setLoading] = useState(true);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getLists(() => setLoading(false)));
+    }, [dispatch]);
+
+    if (loading) {
+        return <ActivityIndicator color={Colors[1]} size="large" style={globalStyles.loader} />;
+    }
+
     return(
-        <View>
-            <Text>Dashboard</Text>
-            <Button title="Agregar nueva lista" onPress={() => navigation.navigate('NewList')} />
+        <View style={styles.container}>
+            <Lists />
+            <CustomButton text="Agregar nueva lista" icon="add" iconColor="#fff" onPress={() => navigation.navigate('NewList')} />
         </View>
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+
+    },
+});
 
 export default HomeScreen;
 
