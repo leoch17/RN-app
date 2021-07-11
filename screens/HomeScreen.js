@@ -5,8 +5,8 @@ import { useDispatch } from 'react-redux';
 
 import { getLists } from '../store/actions/listActions';
 import globalStyles from './../styles/global';
-import Lists from '../componentes/Lists';
-import CustomButton from '../componentes/CustomButton';
+import Lists from '../components/Lists';
+import CustomButton from '../components/CustomButton';
 
 const HomeScreen = ({ navigation }) => {
     const [loading, setLoading] = useState(true);
