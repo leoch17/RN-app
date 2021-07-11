@@ -1,14 +1,13 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
+//Pantallas
+import Login from "./Pantallas/Login";
+
+import Register from "./Pantallas/Register";
+
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Hola Diego</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  return <Register />;
 }
 
 const styles = StyleSheet.create({
