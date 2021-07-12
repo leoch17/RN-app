@@ -1,5 +1,3 @@
-import styled from "styled-components/native";
-import { View, Text, Image, TextInput, TouchableOpacity } from "react-native";
 import Constants from "expo-constants";
 
 const StatusBarHeight = Constants.statusBarHeight;
@@ -15,22 +13,19 @@ export const Colores = {
   rojo: "#EF4444",
 };
 
-const { primario, secundario, terciario, luzoscuro, marca, verde, rojo } =
-  Colores;
-
 export default {
-  contenedorEstilizado: {
+  ContenedorEstilizado: {
     flex: 1,
     padding: 25,
     paddingTop: { StatusBarHeight } + 10,
     backgroundColor: Colores.primario,
   },
-  contenedorInterno: {
+  ContenedorInterno: {
     flex: 1,
     width: "100%",
     alignItems: center,
   },
-  tituloPagina: {
+  TituloPagina: {
     fontSize: 30,
     textAlign: "center",
     fontWeight: "bold",
@@ -40,17 +35,17 @@ export default {
     paddingLeft: 10,
     color: Colores.marca,
   },
-  subTitulo: {
+  SubTitulo: {
     fontSize: 18,
     marginBottom: 20,
     letterSpacing: 1,
     fontWeight: "bold",
     color: Colores.terciario,
   },
-  areaFormularioEstilizado: {
+  AreaFormularioEstilizado: {
     width: "90%",
   },
-  textoEntradaEstilizado: {
+  TextoEntradaEstilizado: {
     color: Colores.secundario,
     paddingTop: 15,
     paddingRight: 55,
@@ -66,24 +61,24 @@ export default {
     marginBottom: 10,
     color: Colores.terciario,
   },
-  etiquetaEntradaEstilizado: {
+  EtiquetaEntradaEstilizado: {
     color: Colores.terciario,
     fontSize: 13,
     textAlign: "left",
   },
-  iconoIzquierdo: {
+  IconoIzquierdo: {
     left: 15,
     top: 38,
     position: "absolute",
     zIndex: 1,
   },
-  iconoDerecho: {
+  IconoDerecho: {
     right: 15,
     top: 38,
     position: "absolute",
     zIndex: 1,
   },
-  botonEstilizado: {
+  BotonEstilizado: {
     backgroundColor: Colores.marca,
     paddingTop: 15,
     paddingRight: 15,
@@ -98,21 +93,21 @@ export default {
     marginVertical: 5,
     height: 60,
   },
-  botonTexto: {
+  BotonTexto: {
     fontSize: 16,
     color: Colores.terciario,
   },
-  cajaMensaje: {
+  CajaMensaje: {
     textAlign: center,
     fontSize: 13,
   },
-  linea: {
+  Linea: {
     height: 1,
     width: "100%",
     marginVertical: 10,
     color: Colores.luzoscuro,
   },
-  vistaExtra: {
+  VistaExtra: {
     justifyContent: "center",
     flexDirection: "row",
     alignItems: "center",
@@ -121,136 +116,18 @@ export default {
     paddingBottom: 10,
     paddingLeft: 10,
   },
-  textoExtra: {
+  TextoExtra: {
     justifyContent: "center",
     alignContent: "center",
     fontSize: 15,
     color: Colores.terciario,
   },
-  enlaceTexto: {
+  EnlaceTexto: {
     justifyContent: center,
     alignItems: center,
   },
-  contenidoEnlaceTexto: {
+  ContenidoEnlaceTexto: {
     color: Colores.marca,
     fontSize: 15,
   },
 };
-
-/*
-export const ContenedorEstilizado = styled.View`
-  flex: 1;
-  padding: 25px;
-  padding-top: ${StatusBarHeight + 10}px;
-  background-color: ${primario};
-`;
-
-export const ContenedorInterno = styled.View`
-  flex: 1;
-  width: 100%;
-  align-items: center;
-`;
-
-export const TituloPagina = styled.View`
-  font-size: 30px;
-  text-align: center;
-  font-weight: bold;
-  color: ${marca};
-  padding: 10px;
-`;
-
-export const SubTitulo = styled.Text`
-  font-size: 18px;
-  margin-bottom: 20px;
-  letter-spacing: 1px;
-  font-weight: bold;
-  color: ${terciario};
-`;
-
-export const AreaFormularioEstilizado = styled.View`
-  width: 90%;
-`;
-
-export const TextoEntradaEstilizado = styled.TextInput`
-  background-color: ${secundario};
-  padding: 15px;
-  padding-left: 55px;
-  padding-right: 55px;
-  border-radius: 5px;
-  font-size: 16px;
-  height: 60px;
-  margin-vertical: 3px;
-  margin-bottom: 10px;
-  color: ${terciario};
-`;
-
-export const EtiquetaEntradaEstilizado = styled.Text`
-  color: ${terciario};
-  font-size: 13px;
-  text-align: left;
-`;
-
-export const IconoIzquierdo = styled.View`
-  left: 15px;
-  top: 38px;
-  position: absolute;
-  z-index: 1;
-`;
-
-export const IconoDerecho = styled.TouchableOpacity`
-  right: 15px;
-  top: 38px;
-  position: absolute;
-  z-index: 1;
-`;
-
-export const BotonEstilizado = styled.TouchableOpacity`
-  padding: 15px;
-  background-color: ${marca};
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-  margin-vertical: 5px;
-  height: 60px;
-`;
-
-export const BotonTexto = styled.Text`
-  color: ${primario};
-  font-size: 16px;
-`;
-
-export const CajaMensaje = styled.Text`
-  text-align: center;
-  font-size: 13px;
-`;
-
-export const Linea = styled.View`
-  height: 1px;
-  width: 100%;
-  background-color: ${luzoscuro};
-  margin-vertical: 10px;
-`;
-
-export const VistaExtra = styled.View`
-  justify-content: center;
-  flex-direction: row;
-  align-items: center;
-  padding: 10px;
-`;
-
-export const TextoExtra = styled.Text`
-  justify-content: center;
-  align-content: center;
-  color: ${terciario};
-  font-size: 15px;
-`;
-
-export const EnlaceTexto = styled.TouchableOpacity`
-  justify-content: center;
-  align-items: center;
-`;
-
-export const ContenidoEnlaceTexto = styled.Text`
-  color: ${marca};
-  font-size: 15px;
-`;*/
