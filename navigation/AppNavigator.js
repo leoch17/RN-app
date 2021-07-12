@@ -9,6 +9,8 @@ import AppLoading from 'expo-app-loading';
 import HomeScreen from '../screens/HomeScreen';
 import AddListScreen from '../screens/AddListScreen';
 import { Colors } from '../constants';
+import LoginScreen from '../screens/LoginScreen';
+import RegisterScreen from '../screens/RegisterScreen';
 
 const TasksStackNavigator = createStackNavigator();
 
@@ -29,6 +31,16 @@ const TaskNavigator = () => {
     return (
         <TasksStackNavigator.Navigator>
             <TasksStackNavigator.Screen 
+                name="Register"
+                component={RegisterScreen}
+                options={{...defautlStyles, title: 'Regístrate', headerTitleAlign: 'center' }}
+            />
+            <TasksStackNavigator.Screen 
+                name="Login"
+                component={LoginScreen}
+                options={{...defautlStyles, title: 'Inicia sesión', headerTitleAlign: 'center' }}
+            />
+            <TasksStackNavigator.Screen 
                 name="Home"
                 component={HomeScreen}
                 options={{...defautlStyles, title: 'Tus listas', headerTitleAlign: 'center' }}
@@ -44,22 +56,11 @@ const TaskNavigator = () => {
 
 const AppNavigator = () => {
 
-    let [fontsLoaded] = useFonts({
-        'Ubuntu-Regular': require('../assets/fonts/Ubuntu-Regular.ttf'),
-        'Ubuntu-Medium': require('../assets/fonts/Ubuntu-Medium.ttf'),
-        'Ubuntu-Light': require('../assets/fonts/Ubuntu-Light.ttf'),
-    });
-    
-
-    if (!fontsLoaded) {
-        return <AppLoading />;
-    } else {
     return(
         <NavigationContainer>
             <TaskNavigator />
         </NavigationContainer>
     );
-    }
 }
 
 export default AppNavigator;

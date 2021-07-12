@@ -16,16 +16,7 @@ const CustomButton = ({ onPress, text, round, icon, iconColor, danger, style }) 
   if (danger) {
     btnStyle = {...btnStyle, ...styles.danger};
   }
-
-/*let [fontsLoaded] = useFonts({
-    'Ubuntu-Regular': require('../assets/fonts/Ubuntu-Regular.ttf'),
-    'Ubuntu-Medium': require('../assets/fonts/Ubuntu-Medium.ttf'),
-    'Ubuntu-Light': require('../assets/fonts/Ubuntu-Light.ttf'),
-  });*/
-
-/*if (!fontsLoaded) {
-    return <AppLoading />;
-} else {*/
+  
   return (
     <TouchableHighlight onPress={onPress} activeOpacity={0.8} style={round ? styles.round : {}} underlayColor="transparent">
       <View style={styles.container}>
