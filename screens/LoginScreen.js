@@ -7,7 +7,11 @@ import { Formik } from "formik";
 //Iconos
 import { Octicons, Ionicons } from "@expo/vector-icons";
 
-import {
+import { Text, TextInput, TouchableOpacity, View } from "react-native";
+
+import { styles } from "./../styles/styles";
+
+const {
   ContenedorEstilizado,
   ContenedorInterno,
   TituloPagina,
@@ -26,8 +30,7 @@ import {
   TextoExtra,
   EnlaceTexto,
   ContenidoEnlaceTexto,
-} from "../styles/styles";
-import { View } from "react-native";
+} = styles;
 
 //Colores
 const { marca, luzoscuro } = Colores;
@@ -36,11 +39,11 @@ const LoginScreen = ({ navigation }) => {
   const [hidePassword, setHidePassword] = useState(true);
 
   return (
-    <ContenedorEstilizado>
+    <View style={ContenedorEstilizado}>
       <StatusBar style="dark" />
-      <ContenedorInterno>
-        <TituloPagina>Wunderlist</TituloPagina>
-        <SubTitulo>Cuenta de Ingreso</SubTitulo>
+      <View style={ContenedorInterno}>
+        <View style={TituloPagina}>Wunderlist</View>
+        <Text style={SubTitulo}>Cuenta de Ingreso</Text>
 
         <Formik
           initialValues={{ email: "", password: "" }}
@@ -49,7 +52,7 @@ const LoginScreen = ({ navigation }) => {
           }}
         >
           {({ handleChange, handleBlur, handleSubmit, values }) => (
-            <AreaFormularioEstilizado>
+            <View style={AreaFormularioEstilizado}>
               <MiTextoEntrada
                 label="Correo Electrónico"
                 icon="mail"
@@ -74,24 +77,30 @@ const LoginScreen = ({ navigation }) => {
                 hidePassword={hidePassword}
                 setHidePassword={setHidePassword}
               />
-              <CajaMensaje>...</CajaMensaje>
-              <BotonEstilizado onPress={() => navigation.navigate('Home')}>
-                <BotonTexto>Iniciar Sesión</BotonTexto>
-              </BotonEstilizado>
-              <Linea />
-              <VistaExtra>
-                <TextoExtra>Aun no tienes una cuenta? </TextoExtra>
-                <EnlaceTexto>
-                  <ContenidoEnlaceTexto onPress={() => navigation.navigate('Register')}>
-                     Registrate
-                  </ContenidoEnlaceTexto>
-                </EnlaceTexto>
-              </VistaExtra>
-            </AreaFormularioEstilizado>
+              <Text style={CajaMensaje}>...</Text>
+              <TouchableOpacity
+                style={BotonEstilizado}
+                onPress={() => navigation.navigate("Home")}
+              >
+                <Text style={BotonTexto}>Iniciar Sesión</Text>
+              </TouchableOpacity>
+              <View style={Linea} />
+              <View style={VistaExtra}>
+                <Text style={TextoExtra}>Aun no tienes una cuenta? </Text>
+                <TouchableOpacity style={EnlaceTexto}>
+                  <Text
+                    style={ContenidoEnlaceTexto}
+                    onPress={() => navigation.navigate("Register")}
+                  >
+                    Registrate
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
           )}
         </Formik>
-      </ContenedorInterno>
-    </ContenedorEstilizado>
+      </View>
+    </View>
   );
 };
 
@@ -105,19 +114,22 @@ const MiTextoEntrada = ({
 }) => {
   return (
     <View>
-      <IconoIzquierdo>
+      <View style={IconoIzquierdo}>
         <Octicons name={icon} size={30} color={marca} />
-      </IconoIzquierdo>
-      <EtiquetaEntradaEstilizado>{label}</EtiquetaEntradaEstilizado>
-      <TextoEntradaEstilizado {...props} />
+      </View>
+      <Text style={EtiquetaEntradaEstilizado}>{label}</Text>
+      <TextInput style={TextoEntradaEstilizado} {...props} />
       {isPassword && (
-        <IconoDerecho onPress={() => setHidePassword(!hidePassword)}>
+        <TouchableOpacity
+          style={IconoDerecho}
+          onPress={() => setHidePassword(!hidePassword)}
+        >
           <Ionicons
             name={hidePassword ? "md-eye-off" : "md-eye"}
             size={30}
             color={luzoscuro}
           />
-        </IconoDerecho>
+        </TouchableOpacity>
       )}
     </View>
   );
