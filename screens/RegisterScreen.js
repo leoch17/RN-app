@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { StatusBar } from "expo-status-bar";
 
 //formik
 import { Formik } from "formik";
@@ -40,7 +39,6 @@ const RegisterScreen = ({ navigation }) => {
 
   return (
     <View style={ContenedorEstilizado}>
-      <StatusBar style="dark" />
       <View style={ContenedorInterno}>
         <View style={TituloPagina}>Wunderlist</View>
         <Text style={SubTitulo}>Registro de Cuenta</Text>
