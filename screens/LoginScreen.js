@@ -39,7 +39,9 @@ const LoginScreen = ({ navigation }) => {
     <ContenedorEstilizado>
       <StatusBar style="dark" />
       <ContenedorInterno>
-        <TituloPagina>Wunderlist</TituloPagina>
+        <TituloPagina>
+          <Text>Wunderlist</Text>
+        </TituloPagina>
         <SubTitulo>Cuenta de Ingreso</SubTitulo>
 
         <Formik
