@@ -56,23 +56,24 @@ const LoginScreen = ({ navigation }) => {
               <Text style={styles.CajaMensaje}>...</Text>
               <TouchableOpacity
                 style={styles.BotonEstilizado}
-                onPress={() => navigation.navigate("Home")}
-              >
-                <Text style={styles.BotonTexto}>Iniciar Sesión</Text>
+                onPress={() => navigation.navigate("Home")}>
+                  <Text style={styles.BotonTexto}>Iniciar Sesión</Text>
               </TouchableOpacity>
+
               <View style={styles.Linea} />
-              <View style={styles.VistaExtra}>
-                <Text style={styles.TextoExtra}>Aun no tienes una cuenta? </Text>
-                <TouchableOpacity style={styles.EnlaceTexto}>
-                  <Text
-                    style={styles.ContenidoEnlaceTexto}
-                    onPress={() => navigation.navigate("Register")}
-                  >
-                    Registrate
-                  </Text>
-                </TouchableOpacity>
+                <View style={styles.VistaExtra}>
+                  <Text style={styles.TextoExtra}>¿Aún no tienes una cuenta? </Text>
+
+                    <TouchableOpacity style={styles.EnlaceTexto}>
+                        <Text
+                          style={styles.ContenidoEnlaceTexto}
+                          onPress={() => navigation.navigate("Register")}>
+                          Regístrate
+                        </Text>
+                    </TouchableOpacity>
+
+                </View>
               </View>
-            </View>
           )}
         </Formik>
       </View>

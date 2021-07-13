@@ -15,11 +15,16 @@ import {
   Button,
 } from "react-native";
 
+//Estilos
 import styles from "./../styles/global";
 import { Colors } from "./../constants/index";
 
+const cuenta = "¿Ya tienes una cuenta? ";
+const ini = "Inicia Sesión";
+
 const RegisterScreen = ({ navigation }) => {
   const [hidePassword, setHidePassword] = useState(true);
+  
 
   return (
     <ScrollView style={styles.ContenedorEstilizado}>
@@ -114,19 +119,25 @@ const RegisterScreen = ({ navigation }) => {
                 style={styles.BotonEstilizado}
                 onPress={handleSubmit}
               >
-                <Text style={styles.BotonTexto}>Registrate</Text>
+                <Text style={styles.BotonTexto}>Regístrate</Text>
               </TouchableOpacity>
-              <Button
-                title="Iniciar Sesión"
-                style={styles.EnlaceTexto}
-                onPress={() => navigation.navigate("Login")}
-              />
 
-              <View style={styles.Linea} />
+              
               <View style={styles.VistaExtra}>
-                <Text style={styles.TextoExtra}>Ya tienes una cuenta? </Text>
+                <Text style={styles.TextoExtra}>{cuenta} 
+                  <Text
+                    style={styles.ContenidoEnlaceTexto}
+                    onPress={() => navigation.navigate("Login")}>
+                    {ini}
+                </Text>
+                </Text>
               </View>
+              
+              <View style={styles.Linea} />
+              <View style={styles.Linea} />
+                
             </View>
+
           )}
         </Formik>
       </View>

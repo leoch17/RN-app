@@ -71,27 +71,31 @@ export default {
   },
   AreaFormularioEstilizado: {
     width: "90%",
+    borderColor: "#20232a",
+    borderRadius: 6,
   },
   TextoEntradaEstilizado: {
+    borderColor: "#20232a",
+    borderRadius: 6,
     color: Colors.secundario,
     paddingTop: 15,
     paddingRight: 55,
     paddingBottom: 15,
     paddingLeft: 55,
-    borderTopLeftRadius: 5,
-    borderTopRightRadius: 5,
-    borderBottomRightRadius: 5,
-    borderBottomLeftRadius: 5,
     fontSize: 16,
     height: 60,
     marginVertical: 3,
     marginBottom: 10,
     color: Colors.terciario,
+    fontFamily: 'Ubuntu-Light'
   },
   EtiquetaEntradaEstilizado: {
     color: Colors.terciario,
     fontSize: 13,
     textAlign: "left",
+    fontFamily: 'Ubuntu-Medium',
+    borderColor: "#20232a",
+    borderRadius: 6,
   },
   IconoIzquierdo: {
     left: 15,
@@ -119,10 +123,12 @@ export default {
     borderBottomLeftRadius: 5,
     marginVertical: 5,
     height: 60,
+    fontFamily: 'Ubuntu-Regular',
   },
   BotonTexto: {
     fontSize: 16,
     color: "white",
+    fontFamily: 'Ubuntu-Regular',
   },
   CajaMensaje: {
     textAlign: "center",
@@ -148,13 +154,16 @@ export default {
     alignContent: "center",
     fontSize: 15,
     color: Colors.terciario,
+
   },
   EnlaceTexto: {
     justifyContent: "center",
     alignItems: "center",
+    fontFamily: 'Ubuntu-Regular',
   },
   ContenidoEnlaceTexto: {
     color: Colors.marca,
     fontSize: 15,
+    fontFamily: 'Ubuntu-Regular',
   },
 };
