@@ -23,7 +23,7 @@ export default {
   ContenedorInterno: {
     flex: 1,
     width: "100%",
-    alignItems: center,
+    alignItems: "center",
   },
   TituloPagina: {
     fontSize: 30,
@@ -98,7 +98,7 @@ export default {
     color: Colores.terciario,
   },
   CajaMensaje: {
-    textAlign: center,
+    textAlign: "center",
     fontSize: 13,
   },
   Linea: {
@@ -123,8 +123,8 @@ export default {
     color: Colores.terciario,
   },
   EnlaceTexto: {
-    justifyContent: center,
-    alignItems: center,
+    justifyContent: "center",
+    alignItems: "center",
   },
   ContenidoEnlaceTexto: {
     color: Colores.marca,

@@ -8,40 +8,17 @@ import { Octicons, Ionicons } from "@expo/vector-icons";
 
 import { View, TouchableOpacity, Text, TextInput } from "react-native";
 
-import { styles } from "./../styles/styles";
+import styles, { Colores } from "./../styles/styles";
 
-const {
-  ContenedorEstilizado,
-  ContenedorInterno,
-  TituloPagina,
-  SubTitulo,
-  AreaFormularioEstilizado,
-  IconoIzquierdo,
-  EtiquetaEntradaEstilizado,
-  TextoEntradaEstilizado,
-  IconoDerecho,
-  BotonEstilizado,
-  BotonTexto,
-  Colores,
-  CajaMensaje,
-  Linea,
-  VistaExtra,
-  TextoExtra,
-  EnlaceTexto,
-  ContenidoEnlaceTexto,
-} = styles;
-
-//Colores
-const { marca, luzoscuro } = Colores;
 
 const RegisterScreen = ({ navigation }) => {
   const [hidePassword, setHidePassword] = useState(true);
 
   return (
-    <View style={ContenedorEstilizado}>
-      <View style={ContenedorInterno}>
-        <View style={TituloPagina}>Wunderlist</View>
-        <Text style={SubTitulo}>Registro de Cuenta</Text>
+    <View style={styles.ContenedorEstilizado}>
+      <View style={styles.ContenedorInterno}>
+        <Text style={styles.TituloPagina}>Wunderlist</Text>
+        <Text style={styles.SubTitulo}>Registro de Cuenta</Text>
 
         <Formik
           initialValues={{
@@ -57,12 +34,12 @@ const RegisterScreen = ({ navigation }) => {
           }}
         >
           {({ handleChange, handleBlur, handleSubmit, values }) => (
-            <View style={AreaFormularioEstilizado}>
+            <View style={styles.AreaFormularioEstilizado}>
               <MiTextoEntrada
                 label="Nombre Completo"
                 icon="person"
                 placeholder="Luis Acurero"
-                placeholderTextColor={luzoscuro}
+                placeholderTextColor={Colores.luzoscuro}
                 onChangeText={handleChange("fullName")}
                 onBlur={handleBlur("fullName")}
                 value={values.fullName}
@@ -72,7 +49,7 @@ const RegisterScreen = ({ navigation }) => {
                 label="Nombre de Usuario"
                 icon="person"
                 placeholder="RocketMan20"
-                placeholderTextColor={luzoscuro}
+                placeholderTextColor={Colores.luzoscuro}
                 onChangeText={handleChange("user")}
                 onBlur={handleBlur("user")}
                 value={values.user}
@@ -82,7 +59,7 @@ const RegisterScreen = ({ navigation }) => {
                 label="Correo Electrónico"
                 icon="mail"
                 placeholder="LuisAcu@gmail.com"
-                placeholderTextColor={luzoscuro}
+                placeholderTextColor={Colores.luzoscuro}
                 onChangeText={handleChange("email")}
                 onBlur={handleBlur("email")}
                 value={values.email}
@@ -93,7 +70,7 @@ const RegisterScreen = ({ navigation }) => {
                 label="Fecha de Nacimiento"
                 icon="calendar"
                 placeholder="DD-MM-AAAA"
-                placeholderTextColor={luzoscuro}
+                placeholderTextColor={Colores.luzoscuro}
                 onChangeText={handleChange("dateOfBirth")}
                 onBlur={handleBlur("dateOfBirth")}
               />
@@ -102,7 +79,7 @@ const RegisterScreen = ({ navigation }) => {
                 label="Contraseña"
                 icon="lock"
                 placeholder="***************"
-                placeholderTextColor={luzoscuro}
+                placeholderTextColor={Colores.luzoscuro}
                 onChangeText={handleChange("password")}
                 onBlur={handleBlur("password")}
                 value={values.password}
@@ -116,7 +93,7 @@ const RegisterScreen = ({ navigation }) => {
                 label="Confirma Contraseña"
                 icon="lock"
                 placeholder="***************"
-                placeholderTextColor={luzoscuro}
+                placeholderTextColor={Colores.luzoscuro}
                 onChangeText={handleChange("confirmPassword")}
                 onBlur={handleBlur("confirmPassword")}
                 value={values.confirmPassword}
@@ -125,16 +102,16 @@ const RegisterScreen = ({ navigation }) => {
                 hidePassword={hidePassword}
                 setHidePassword={setHidePassword}
               />
-              <Text style={CajaMensaje}>...</Text>
-              <TouchableOpacity style={BotonEstilizado} onPress={handleSubmit}>
-                <Text style={BotonTexto}>Registrate</Text>
+              <Text style={styles.CajaMensaje}>...</Text>
+              <TouchableOpacity style={styles.BotonEstilizado} onPress={handleSubmit}>
+                <Text style={styles.BotonTexto}>Registrate</Text>
               </TouchableOpacity>
-              <View style={Linea} />
-              <View style={VistaExtra}>
-                <Text style={TextoExtra}>Ya tienes una cuenta? </Text>
-                <TouchableOpacity style={EnlaceTexto}>
+              <View style={styles.Linea} />
+              <View style={styles.VistaExtra}>
+                <Text style={styles.TextoExtra}>Ya tienes una cuenta? </Text>
+                <TouchableOpacity style={styles.EnlaceTexto}>
                   <Text
-                    style={ContenidoEnlaceTexto}
+                    style={styles.ContenidoEnlaceTexto}
                     onPress={() => navigation.navigate("Login")}
                   >
                     Iniciar Sesión
@@ -160,11 +137,11 @@ const MiTextoEntrada = ({
 }) => {
   return (
     <View>
-      <View style={IconoIzquierdo}>
-        <Octicons name={icon} size={30} color={marca} />
+      <View style={styles.IconoIzquierdo}>
+        <Octicons name={icon} size={30} color={Colores.marca} />
       </View>
-      <Text style={EtiquetaEntradaEstilizado}>{label}</Text>
-      {!isDate && <TextInput style={TextoEntradaEstilizado} {...props} />}
+      <Text style={styles.EtiquetaEntradaEstilizado}>{label}</Text>
+      {!isDate && <TextInput style={styles.TextoEntradaEstilizado} {...props} />}
       {isDate && (
         <TouchableOpacity>
           <TextInput {...props} />
@@ -172,13 +149,13 @@ const MiTextoEntrada = ({
       )}
       {isPassword && (
         <TouchableOpacity
-          style={IconoDerecho}
+          style={styles.IconoDerecho}
           onPress={() => setHidePassword(!hidePassword)}
         >
           <Ionicons
             name={hidePassword ? "md-eye-off" : "md-eye"}
             size={30}
-            color={luzoscuro}
+            color={Colores.luzoscuro}
           />
         </TouchableOpacity>
       )}

@@ -8,40 +8,17 @@ import { Octicons, Ionicons } from "@expo/vector-icons";
 
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 
-import { styles } from "./../styles/styles";
+import styles, { Colores } from "./../styles/styles";
 
-const {
-  ContenedorEstilizado,
-  ContenedorInterno,
-  TituloPagina,
-  SubTitulo,
-  AreaFormularioEstilizado,
-  IconoIzquierdo,
-  EtiquetaEntradaEstilizado,
-  TextoEntradaEstilizado,
-  IconoDerecho,
-  BotonEstilizado,
-  BotonTexto,
-  Colores,
-  CajaMensaje,
-  Linea,
-  VistaExtra,
-  TextoExtra,
-  EnlaceTexto,
-  ContenidoEnlaceTexto,
-} = styles;
-
-//Colores
-const { marca, luzoscuro } = Colores;
 
 const LoginScreen = ({ navigation }) => {
   const [hidePassword, setHidePassword] = useState(true);
 
   return (
-    <View style={ContenedorEstilizado}>
-      <View style={ContenedorInterno}>
-        <View style={TituloPagina}>Wunderlist</View>
-        <Text style={SubTitulo}>Cuenta de Ingreso</Text>
+    <View style={styles.ContenedorEstilizado}>
+      <View style={styles.ContenedorInterno}>
+        <Text style={styles.TituloPagina}>Wunderlist</Text>
+        <Text style={styles.SubTitulo}>Cuenta de Ingreso</Text>
 
         <Formik
           initialValues={{ email: "", password: "" }}
@@ -50,12 +27,12 @@ const LoginScreen = ({ navigation }) => {
           }}
         >
           {({ handleChange, handleBlur, handleSubmit, values }) => (
-            <View style={AreaFormularioEstilizado}>
+            <View style={styles.AreaFormularioEstilizado}>
               <MiTextoEntrada
                 label="Correo Electrónico"
                 icon="mail"
                 placeholder="andyj@gmail.com"
-                placeholderTextColor={luzoscuro}
+                placeholderTextColor={Colores.luzoscuro}
                 onChangeText={handleChange("email")}
                 onBlur={handleBlur("email")}
                 value={values.email}
@@ -66,7 +43,7 @@ const LoginScreen = ({ navigation }) => {
                 label="Contraseña"
                 icon="lock"
                 placeholder="***************"
-                placeholderTextColor={luzoscuro}
+                placeholderTextColor={Colores.luzoscuro}
                 onChangeText={handleChange("password")}
                 onBlur={handleBlur("password")}
                 value={values.password}
@@ -75,19 +52,19 @@ const LoginScreen = ({ navigation }) => {
                 hidePassword={hidePassword}
                 setHidePassword={setHidePassword}
               />
-              <Text style={CajaMensaje}>...</Text>
+              <Text style={styles.CajaMensaje}>...</Text>
               <TouchableOpacity
-                style={BotonEstilizado}
+                style={styles.BotonEstilizado}
                 onPress={() => navigation.navigate("Home")}
               >
-                <Text style={BotonTexto}>Iniciar Sesión</Text>
+                <Text style={styles.BotonTexto}>Iniciar Sesión</Text>
               </TouchableOpacity>
-              <View style={Linea} />
-              <View style={VistaExtra}>
-                <Text style={TextoExtra}>Aun no tienes una cuenta? </Text>
-                <TouchableOpacity style={EnlaceTexto}>
+              <View style={styles.Linea} />
+              <View style={styles.VistaExtra}>
+                <Text style={styles.TextoExtra}>Aun no tienes una cuenta? </Text>
+                <TouchableOpacity style={styles.EnlaceTexto}>
                   <Text
-                    style={ContenidoEnlaceTexto}
+                    style={styles.ContenidoEnlaceTexto}
                     onPress={() => navigation.navigate("Register")}
                   >
                     Registrate
@@ -108,24 +85,24 @@ const MiTextoEntrada = ({
   isPassword,
   hidePassword,
   setHidePassword,
-  ...props
+  ...props 
 }) => {
   return (
     <View>
-      <View style={IconoIzquierdo}>
-        <Octicons name={icon} size={30} color={marca} />
+      <View style={styles.IconoIzquierdo}>
+        <Octicons name={icon} size={30} color={Colores.marca} />
       </View>
-      <Text style={EtiquetaEntradaEstilizado}>{label}</Text>
-      <TextInput style={TextoEntradaEstilizado} {...props} />
+      <Text style={styles.EtiquetaEntradaEstilizado}>{label}</Text>
+      <TextInput style={styles.TextoEntradaEstilizado} {...props} />
       {isPassword && (
         <TouchableOpacity
-          style={IconoDerecho}
+          style={styles.IconoDerecho}
           onPress={() => setHidePassword(!hidePassword)}
         >
           <Ionicons
             name={hidePassword ? "md-eye-off" : "md-eye"}
             size={30}
-            color={luzoscuro}
+            color={Colores.luzoscuro}
           />
         </TouchableOpacity>
       )}
