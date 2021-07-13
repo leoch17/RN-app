@@ -33,7 +33,7 @@ const TaskNavigator = () => {
             <TasksStackNavigator.Screen 
                 name="Register"
                 component={RegisterScreen}
-                options={{...defautlStyles, title: 'Regístrate', headerTitleAlign: 'center' }}
+                options={{...defautlStyles, title: '¡Bienvenido!', headerTitleAlign: 'center' }}
             />
             <TasksStackNavigator.Screen 
                 name="Login"

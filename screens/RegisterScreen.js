@@ -6,7 +6,7 @@ import { Formik } from "formik";
 //Iconos
 import { Octicons, Ionicons } from "@expo/vector-icons";
 
-import { View, TouchableOpacity, Text, TextInput } from "react-native";
+import { View, ScrollView, TouchableOpacity, Text, TextInput } from "react-native";
 
 import styles, { Colores } from "./../styles/styles";
 
@@ -15,7 +15,7 @@ const RegisterScreen = ({ navigation }) => {
   const [hidePassword, setHidePassword] = useState(true);
 
   return (
-    <View style={styles.ContenedorEstilizado}>
+    <ScrollView style={styles.ContenedorEstilizado}>
       <View style={styles.ContenedorInterno}>
         <Text style={styles.TituloPagina}>Wunderlist</Text>
         <Text style={styles.SubTitulo}>Registro de Cuenta</Text>
@@ -106,6 +106,8 @@ const RegisterScreen = ({ navigation }) => {
               <TouchableOpacity style={styles.BotonEstilizado} onPress={handleSubmit}>
                 <Text style={styles.BotonTexto}>Registrate</Text>
               </TouchableOpacity>
+
+              
               <View style={styles.Linea} />
               <View style={styles.VistaExtra}>
                 <Text style={styles.TextoExtra}>Ya tienes una cuenta? </Text>
@@ -122,7 +124,7 @@ const RegisterScreen = ({ navigation }) => {
           )}
         </Formik>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

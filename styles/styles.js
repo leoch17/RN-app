@@ -1,6 +1,6 @@
 import Constants from "expo-constants";
 
-const StatusBarHeight = Constants.statusBarHeight;
+//const StatusBarHeight = Constants.statusBarHeight;
 
 //Colores
 export const Colores = {
@@ -13,11 +13,13 @@ export const Colores = {
   rojo: "#EF4444",
 };
 
+
+//paddingTop: { StatusBarHeight } + 10,
+
 export default {
   ContenedorEstilizado: {
     flex: 1,
     padding: 25,
-    paddingTop: { StatusBarHeight } + 10,
     backgroundColor: Colores.primario,
   },
   ContenedorInterno: {
@@ -95,7 +97,7 @@ export default {
   },
   BotonTexto: {
     fontSize: 16,
-    color: Colores.terciario,
+    color: "white",
   },
   CajaMensaje: {
     textAlign: "center",
