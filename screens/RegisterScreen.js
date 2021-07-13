@@ -15,7 +15,8 @@ import {
   Button,
 } from "react-native";
 
-import styles, { Colores } from "./../styles/styles";
+import styles from "./../styles/global";
+import { Colors } from "./../constants/index";
 
 const RegisterScreen = ({ navigation }) => {
   const [hidePassword, setHidePassword] = useState(true);
@@ -45,7 +46,7 @@ const RegisterScreen = ({ navigation }) => {
                 label="Nombre Completo"
                 icon="person"
                 placeholder="Luis Acurero"
-                placeholderTextColor={Colores.luzoscuro}
+                placeholderTextColor={Colors.luzoscuro}
                 onChangeText={handleChange("fullName")}
                 onBlur={handleBlur("fullName")}
                 value={values.fullName}
@@ -55,7 +56,7 @@ const RegisterScreen = ({ navigation }) => {
                 label="Nombre de Usuario"
                 icon="person"
                 placeholder="RocketMan20"
-                placeholderTextColor={Colores.luzoscuro}
+                placeholderTextColor={Colors.luzoscuro}
                 onChangeText={handleChange("user")}
                 onBlur={handleBlur("user")}
                 value={values.user}
@@ -65,7 +66,7 @@ const RegisterScreen = ({ navigation }) => {
                 label="Correo Electrónico"
                 icon="mail"
                 placeholder="LuisAcu@gmail.com"
-                placeholderTextColor={Colores.luzoscuro}
+                placeholderTextColor={Colors.luzoscuro}
                 onChangeText={handleChange("email")}
                 onBlur={handleBlur("email")}
                 value={values.email}
@@ -76,7 +77,7 @@ const RegisterScreen = ({ navigation }) => {
                 label="Fecha de Nacimiento"
                 icon="calendar"
                 placeholder="DD-MM-AAAA"
-                placeholderTextColor={Colores.luzoscuro}
+                placeholderTextColor={Colors.luzoscuro}
                 onChangeText={handleChange("dateOfBirth")}
                 onBlur={handleBlur("dateOfBirth")}
               />
@@ -85,7 +86,7 @@ const RegisterScreen = ({ navigation }) => {
                 label="Contraseña"
                 icon="lock"
                 placeholder="***************"
-                placeholderTextColor={Colores.luzoscuro}
+                placeholderTextColor={Colors.luzoscuro}
                 onChangeText={handleChange("password")}
                 onBlur={handleBlur("password")}
                 value={values.password}
@@ -99,7 +100,7 @@ const RegisterScreen = ({ navigation }) => {
                 label="Confirma Contraseña"
                 icon="lock"
                 placeholder="***************"
-                placeholderTextColor={Colores.luzoscuro}
+                placeholderTextColor={Colors.luzoscuro}
                 onChangeText={handleChange("confirmPassword")}
                 onBlur={handleBlur("confirmPassword")}
                 value={values.confirmPassword}
@@ -145,7 +146,7 @@ const MiTextoEntrada = ({
   return (
     <View>
       <View style={styles.IconoIzquierdo}>
-        <Octicons name={icon} size={30} color={Colores.marca} />
+        <Octicons name={icon} size={30} color={Colors.marca} />
       </View>
       <Text style={styles.EtiquetaEntradaEstilizado}>{label}</Text>
       {!isDate && (
@@ -164,7 +165,7 @@ const MiTextoEntrada = ({
           <Ionicons
             name={hidePassword ? "md-eye-off" : "md-eye"}
             size={30}
-            color={Colores.luzoscuro}
+            color={Colors.luzoscuro}
           />
         </TouchableOpacity>
       )}

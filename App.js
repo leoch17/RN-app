@@ -8,6 +8,7 @@ import AppLoading from 'expo-app-loading';
 
 import AppNavigator from './navigation/AppNavigator';
 
+
 const App = () => {
   
   let [fontsLoaded] = useFonts({

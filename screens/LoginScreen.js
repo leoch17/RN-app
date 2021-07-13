@@ -8,7 +8,8 @@ import { Octicons, Ionicons } from "@expo/vector-icons";
 
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 
-import styles, { Colores } from "./../styles/styles";
+import styles from "./../styles/global";
+import { Colors } from "./../constants/index";
 
 
 const LoginScreen = ({ navigation }) => {
@@ -32,7 +33,7 @@ const LoginScreen = ({ navigation }) => {
                 label="Correo Electrónico"
                 icon="mail"
                 placeholder="andyj@gmail.com"
-                placeholderTextColor={Colores.luzoscuro}
+                placeholderTextColor={Colors.luzoscuro}
                 onChangeText={handleChange("email")}
                 onBlur={handleBlur("email")}
                 value={values.email}
@@ -43,7 +44,7 @@ const LoginScreen = ({ navigation }) => {
                 label="Contraseña"
                 icon="lock"
                 placeholder="***************"
-                placeholderTextColor={Colores.luzoscuro}
+                placeholderTextColor={Colors.luzoscuro}
                 onChangeText={handleChange("password")}
                 onBlur={handleBlur("password")}
                 value={values.password}
@@ -90,7 +91,7 @@ const MiTextoEntrada = ({
   return (
     <View>
       <View style={styles.IconoIzquierdo}>
-        <Octicons name={icon} size={30} color={Colores.marca} />
+        <Octicons name={icon} size={30} color={Colors.marca} />
       </View>
       <Text style={styles.EtiquetaEntradaEstilizado}>{label}</Text>
       <TextInput style={styles.TextoEntradaEstilizado} {...props} />
@@ -102,7 +103,7 @@ const MiTextoEntrada = ({
           <Ionicons
             name={hidePassword ? "md-eye-off" : "md-eye"}
             size={30}
-            color={Colores.luzoscuro}
+            color={Colors.luzoscuro}
           />
         </TouchableOpacity>
       )}
