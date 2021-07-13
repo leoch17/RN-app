@@ -6,10 +6,16 @@ import { Formik } from "formik";
 //Iconos
 import { Octicons, Ionicons } from "@expo/vector-icons";
 
-import { View, ScrollView, TouchableOpacity, Text, TextInput } from "react-native";
+import {
+  View,
+  ScrollView,
+  TouchableOpacity,
+  Text,
+  TextInput,
+  Button,
+} from "react-native";
 
 import styles, { Colores } from "./../styles/styles";
-
 
 const RegisterScreen = ({ navigation }) => {
   const [hidePassword, setHidePassword] = useState(true);
@@ -103,22 +109,21 @@ const RegisterScreen = ({ navigation }) => {
                 setHidePassword={setHidePassword}
               />
               <Text style={styles.CajaMensaje}>...</Text>
-              <TouchableOpacity style={styles.BotonEstilizado} onPress={handleSubmit}>
+              <TouchableOpacity
+                style={styles.BotonEstilizado}
+                onPress={handleSubmit}
+              >
                 <Text style={styles.BotonTexto}>Registrate</Text>
               </TouchableOpacity>
+              <Button
+                title="Iniciar Sesión"
+                style={styles.EnlaceTexto}
+                onPress={() => navigation.navigate("Login")}
+              />
 
-              
               <View style={styles.Linea} />
               <View style={styles.VistaExtra}>
                 <Text style={styles.TextoExtra}>Ya tienes una cuenta? </Text>
-                <TouchableOpacity style={styles.EnlaceTexto}>
-                  <Text
-                    style={styles.ContenidoEnlaceTexto}
-                    onPress={() => navigation.navigate("Login")}
-                  >
-                    Iniciar Sesión
-                  </Text>
-                </TouchableOpacity>
               </View>
             </View>
           )}
@@ -143,7 +148,9 @@ const MiTextoEntrada = ({
         <Octicons name={icon} size={30} color={Colores.marca} />
       </View>
       <Text style={styles.EtiquetaEntradaEstilizado}>{label}</Text>
-      {!isDate && <TextInput style={styles.TextoEntradaEstilizado} {...props} />}
+      {!isDate && (
+        <TextInput style={styles.TextoEntradaEstilizado} {...props} />
+      )}
       {isDate && (
         <TouchableOpacity>
           <TextInput {...props} />
