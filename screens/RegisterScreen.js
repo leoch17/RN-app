@@ -18,6 +18,7 @@ import {
 //Estilos
 import styles from "./../styles/global";
 import { Colors } from "./../constants/index";
+import HomeScreen from "./HomeScreen";
 
 const cuenta = "¿Ya tienes una cuenta? ";
 const ini = " Inicia Sesión";
@@ -96,7 +97,6 @@ const RegisterScreen = ({ navigation }) => {
                 setHidePassword={setHidePassword}
               />
 
-              
               <Text style={styles.CajaMensaje}>...</Text>
               <TouchableOpacity
                 style={styles.BotonEstilizado}

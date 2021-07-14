@@ -3,6 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { View, StyleSheet, Alert, ToastAndroid } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
+import { useDispatch } from "react-redux";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 
@@ -10,6 +11,7 @@ import HomeScreen from "../screens/HomeScreen";
 import AddListScreen from "../screens/AddListScreen";
 import ListScreen from "../screens/ListScreen";
 import { Colors } from "../constants";
+import { deleteList } from "../store/actions/listActions";
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
 
@@ -25,10 +27,38 @@ const defautlStyles = {
   },
 };
 
+const styles = StyleSheet.create({
+  headerRightSpace: {
+    marginRight: 10,
+  },
+});
+
 const TaskNavigator = () => {
+  const dispatch = useDispatch();
+
   const deleteListClickHandler = (id, navigation) => {
-    console.log("list id", id);
+    Alert.alert(
+      "Eliminar lista",
+      "¿Estas seguro de que quieres eliminar esta lista?",
+      [
+        { text: "Cancelar" },
+        { text: "Eliminar", onPress: () => deleteListHandler(id, navigation) },
+      ]
+    );
   };
+
+  const deleteListHandler = (id, navigation) => {
+    dispatch(
+      deleteList(id, () => {
+        navigation.goBack();
+        ToastAndroid.show(
+          "Lista eliminada Satisfactoriamente!",
+          ToastAndroid.LONG
+        );
+      })
+    );
+  };
+
   return (
     <TasksStackNavigator.Navigator>
       <TasksStackNavigator.Screen
@@ -70,7 +100,7 @@ const TaskNavigator = () => {
           ...defautlStyles,
           title: route.params.name,
           headerRight: () => (
-            <View>
+            <View style={styles.headerRightSpace}>
               <Icon
                 name="md-trash"
                 color="#fff"

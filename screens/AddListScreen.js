@@ -13,7 +13,6 @@ import CustomButton from "../components/CustomButton";
 import { Colors } from "../constants";
 import globalStyles from "../styles/global";
 import { createList } from "../store/actions/listActions";
-import { name } from "ci-info";
 
 const AddListScreen = ({ navigation }) => {
   const [name, setName] = useState("");
@@ -25,7 +24,7 @@ const AddListScreen = ({ navigation }) => {
       return Alert.alert("Validación", "El nombre es requerido!");
     }
     const alreadyExist = lists.find(
-      (l) => l.name.tolowerCase() === name.trim().tolowerCase()
+      (l) => l.name.toLowerCase() === name.trim().tolowerCase()
     );
     if (alreadyExist) {
       return Alert.alert("Validación", "La lista con este nombre ya existe");
@@ -41,7 +40,7 @@ const AddListScreen = ({ navigation }) => {
         },
         () => {
           ToastAndroid.show(
-            `Algo ha salido mal, por favor intentelo de nuevo`,
+            "Algo ha salido mal, por favor intentelo de nuevo",
             ToastAndroid.LONG
           );
         }
