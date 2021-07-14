@@ -30,6 +30,11 @@ const RegisterScreen = ({ navigation }) => {
       <View style={styles.ContenedorInterno}>
         <Text style={styles.TituloPagina}>Wunderlist</Text>
         <Text style={styles.SubTitulo}>Registro de Cuenta</Text>
+        <Text
+          style={styles.ContenidoEnlaceTexto}
+          onPress={() => navigation.navigate("Home")}>
+            Home
+          </Text>
 
         <Formik
           initialValues={{
