@@ -26,6 +26,9 @@ const defautlStyles = {
 };
 
 const TaskNavigator = () => {
+  const deleteListClickHandler = (id, navigation) => {
+    console.log("list id", id);
+  };
   return (
     <TasksStackNavigator.Navigator>
       <TasksStackNavigator.Screen
@@ -66,6 +69,18 @@ const TaskNavigator = () => {
         options={({ route, navigation }) => ({
           ...defautlStyles,
           title: route.params.name,
+          headerRight: () => (
+            <View>
+              <Icon
+                name="md-trash"
+                color="#fff"
+                size={30}
+                onPress={() =>
+                  deleteListClickHandler(route.params.id, navigation)
+                }
+              />
+            </View>
+          ),
         })}
       />
     </TasksStackNavigator.Navigator>
