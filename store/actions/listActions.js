@@ -67,7 +67,7 @@ export const createList = (name, onSuccess = () => {}, onError = () => {}) => {
 
       const { lists } = store.getState().lists;
 
-      const listsCopy = [...list];
+      const listsCopy = [...lists];
       listsCopy.push(newList);
       await AsyncStorage.setItem(STORAGE_KEYS.lists, JSON.stringify(listsCopy));
 
@@ -77,7 +77,7 @@ export const createList = (name, onSuccess = () => {}, onError = () => {}) => {
       });
       onSuccess();
     } catch (error) {
-      console.log(err);
+      console.log(error);
       onError();
     }
   };
