@@ -21,7 +21,7 @@ const AddListScreen = ({ navigation }) => {
   const { lists } = useSelector((state) => state.list);
 
   const submitHandler = () => {
-    if (name.trim() === "") {
+    if (name.trim() === ''  ) {
       return Alert.alert("Validación", "El nombre es requerido!");
     }
     const alreadyExist = lists.find(
@@ -59,7 +59,7 @@ const AddListScreen = ({ navigation }) => {
           placeholder="Nombre de Lista"
           placeholderTextColor={Colors[3]}
         />
-        <CustomButton text="Enviar" onPress={submitHandler} round />
+        <CustomButton text="Crear" onPress={submitHandler} round />
       </View>
     </TouchableWithoutFeedback>
   );
