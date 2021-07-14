@@ -8,8 +8,14 @@ import { Octicons, Ionicons } from "@expo/vector-icons";
 
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 
+// Estilos
 import styles from "./../styles/global";
-import { Colors } from "./../constants/index";
+import { Colors } from "./../constants/index"; 
+
+// Cliente de axios
+import axios from 'axios';
+
+
 
 
 const LoginScreen = ({ navigation }) => {
@@ -59,8 +65,6 @@ const LoginScreen = ({ navigation }) => {
                 onPress={() => navigation.navigate("Home")}>
                   <Text style={styles.BotonTexto}>Iniciar Sesión</Text>
               </TouchableOpacity>
-
-              <View style={styles.Linea} />
                 <View style={styles.VistaExtra}>
                   <Text style={styles.TextoExtra}>¿Aún no tienes una cuenta? </Text>
 

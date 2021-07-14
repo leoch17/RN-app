@@ -20,7 +20,7 @@ import styles from "./../styles/global";
 import { Colors } from "./../constants/index";
 
 const cuenta = "¿Ya tienes una cuenta? ";
-const ini = "Inicia Sesión";
+const ini = " Inicia Sesión";
 
 const RegisterScreen = ({ navigation }) => {
   const [hidePassword, setHidePassword] = useState(true);
@@ -79,15 +79,6 @@ const RegisterScreen = ({ navigation }) => {
               />
 
               <MiTextoEntrada
-                label="Fecha de Nacimiento"
-                icon="calendar"
-                placeholder="DD-MM-AAAA"
-                placeholderTextColor={Colors.luzoscuro}
-                onChangeText={handleChange("dateOfBirth")}
-                onBlur={handleBlur("dateOfBirth")}
-              />
-
-              <MiTextoEntrada
                 label="Contraseña"
                 icon="lock"
                 placeholder="***************"
@@ -101,19 +92,7 @@ const RegisterScreen = ({ navigation }) => {
                 setHidePassword={setHidePassword}
               />
 
-              <MiTextoEntrada
-                label="Confirma Contraseña"
-                icon="lock"
-                placeholder="***************"
-                placeholderTextColor={Colors.luzoscuro}
-                onChangeText={handleChange("confirmPassword")}
-                onBlur={handleBlur("confirmPassword")}
-                value={values.confirmPassword}
-                secureTextEntry={hidePassword}
-                isPassword={true}
-                hidePassword={hidePassword}
-                setHidePassword={setHidePassword}
-              />
+              
               <Text style={styles.CajaMensaje}>...</Text>
               <TouchableOpacity
                 style={styles.BotonEstilizado}

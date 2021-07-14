@@ -50,3 +50,25 @@ export const createList = (name, onSuccess = () => {}, onError = () => {}) => {
         }
     };
 };
+
+// Eliminar Lista
+export const deleteList = (id, onSuccess = () => {}, onError = () => {}) => {
+    return async dispatch  => {
+        try {
+            const { lists } = store.getState().list;
+
+            const listsCopy = [...lists];
+            const filteredLists = listsCopy.filter(l => l.id !== id);
+            await AsyncStorage.setItem(STORAGE_KEYS.lists, JSON.stringify(filteredLists));
+
+            dispatch({
+                type: SET_LISTS,
+                payload: filteredLists,
+      });
+      onSuccess();
+        } catch ( err) {
+            console.log(err);
+            onError();
+        }
+    }
+}
