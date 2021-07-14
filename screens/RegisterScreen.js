@@ -24,7 +24,6 @@ const ini = "Inicia Sesión";
 
 const RegisterScreen = ({ navigation }) => {
   const [hidePassword, setHidePassword] = useState(true);
-  
 
   return (
     <ScrollView style={styles.ContenedorEstilizado}>
@@ -79,15 +78,6 @@ const RegisterScreen = ({ navigation }) => {
               />
 
               <MiTextoEntrada
-                label="Fecha de Nacimiento"
-                icon="calendar"
-                placeholder="DD-MM-AAAA"
-                placeholderTextColor={Colors.luzoscuro}
-                onChangeText={handleChange("dateOfBirth")}
-                onBlur={handleBlur("dateOfBirth")}
-              />
-
-              <MiTextoEntrada
                 label="Contraseña"
                 icon="lock"
                 placeholder="***************"
@@ -101,19 +91,6 @@ const RegisterScreen = ({ navigation }) => {
                 setHidePassword={setHidePassword}
               />
 
-              <MiTextoEntrada
-                label="Confirma Contraseña"
-                icon="lock"
-                placeholder="***************"
-                placeholderTextColor={Colors.luzoscuro}
-                onChangeText={handleChange("confirmPassword")}
-                onBlur={handleBlur("confirmPassword")}
-                value={values.confirmPassword}
-                secureTextEntry={hidePassword}
-                isPassword={true}
-                hidePassword={hidePassword}
-                setHidePassword={setHidePassword}
-              />
               <Text style={styles.CajaMensaje}>...</Text>
               <TouchableOpacity
                 style={styles.BotonEstilizado}
@@ -122,22 +99,21 @@ const RegisterScreen = ({ navigation }) => {
                 <Text style={styles.BotonTexto}>Regístrate</Text>
               </TouchableOpacity>
 
-              
               <View style={styles.VistaExtra}>
-                <Text style={styles.TextoExtra}>{cuenta} 
+                <Text style={styles.TextoExtra}>
+                  {cuenta}
                   <Text
                     style={styles.ContenidoEnlaceTexto}
-                    onPress={() => navigation.navigate("Login")}>
+                    onPress={() => navigation.navigate("Login")}
+                  >
                     {ini}
-                </Text>
+                  </Text>
                 </Text>
               </View>
-              
-              <View style={styles.Linea} />
-              <View style={styles.Linea} />
-                
-            </View>
 
+              <View style={styles.Linea} />
+              <View style={styles.Linea} />
+            </View>
           )}
         </Formik>
       </View>
