@@ -24,7 +24,6 @@ const ini = " Inicia Sesión";
 
 const RegisterScreen = ({ navigation }) => {
   const [hidePassword, setHidePassword] = useState(true);
-  
 
   return (
     <ScrollView style={styles.ContenedorEstilizado}>
@@ -101,22 +100,21 @@ const RegisterScreen = ({ navigation }) => {
                 <Text style={styles.BotonTexto}>Regístrate</Text>
               </TouchableOpacity>
 
-              
               <View style={styles.VistaExtra}>
-                <Text style={styles.TextoExtra}>{cuenta} 
+                <Text style={styles.TextoExtra}>
+                  {cuenta}
                   <Text
                     style={styles.ContenidoEnlaceTexto}
-                    onPress={() => navigation.navigate("Login")}>
+                    onPress={() => navigation.navigate("Login")}
+                  >
                     {ini}
-                </Text>
+                  </Text>
                 </Text>
               </View>
-              
-              <View style={styles.Linea} />
-              <View style={styles.Linea} />
-                
-            </View>
 
+              <View style={styles.Linea} />
+              <View style={styles.Linea} />
+            </View>
           )}
         </Formik>
       </View>
