@@ -15,35 +15,27 @@ import globalStyles from "../styles/global";
 import { createList } from "../store/actions/listActions";
 
 const AddListScreen = ({ navigation }) => {
-  const [name, setName] = useState("");
+  const [name, setName] = useState('');
   const dispatch = useDispatch();
   const { lists } = useSelector((state) => state.list);
 
   const submitHandler = () => {
-    if (name.trim() === ''  ) {
-      return Alert.alert("Validación", "El nombre es requerido!");
+    if (name.trim() === '') {
+      return Alert.alert("Error de Validación", "El nombre de la lista es requerido!");
     }
-    const alreadyExist = lists.find(
-      (l) => l.name.toLowerCase() === name.trim().tolowerCase()
-    );
+    const alreadyExist = lists.find(l => l.name.toLowerCase() === name.trim().tolowerCase());
     if (alreadyExist) {
       return Alert.alert("Validación", "La lista con este nombre ya existe");
     }
 
-    dispatch(
-      createList(
+    dispatch(createList(
         name,
         () => {
           ToastAndroid.show(`Lista "${name}" creada!`, ToastAndroid.LONG);
           Keyboard.dismiss();
           navigation.navigate("Home");
         },
-        () => {
-          ToastAndroid.show(
-            "Algo ha salido mal, por favor intentelo de nuevo",
-            ToastAndroid.LONG
-          );
-        }
+        () => {ToastAndroid.show("Algo ha salido mal, por favor intentelo de nuevo",ToastAndroid.LONG);}
       )
     );
   };
