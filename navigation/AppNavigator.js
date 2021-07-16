@@ -10,6 +10,7 @@ import AppLoading from "expo-app-loading";
 import HomeScreen from "../screens/HomeScreen";
 import AddListScreen from "../screens/AddListScreen";
 import ListScreen from "../screens/ListScreen";
+import AddTaskScreen from "../screens/AddTaskScreen";
 import { Colors } from "../constants";
 import { deleteList } from "../store/actions/listActions";
 import LoginScreen from "../screens/LoginScreen";
@@ -112,6 +113,11 @@ const TaskNavigator = () => {
             </View>
           ),
         })}
+      />
+      <TasksStackNavigator.Screen
+        name="NewTask"
+        component={AddTaskScreen}
+        options={{ ...defautlStyles, title: "Agregar nueva tarea" }}
       />
     </TasksStackNavigator.Navigator>
   );

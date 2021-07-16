@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -12,10 +12,56 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { Colors } from "../constants";
 import globalStyles from "../styles/global";
 
-const Tasks = () => {
+const Tasks = ({ navigation, listId }) => {
+  const { tasks } = useSelector((state) => state.task);
+  const [tasksLoaded, setTasksLoaded] = useState(false);
+  const [data, setData] = useSelector([]);
+
+  useEffect(() => {
+    if (tasks) {
+      const copyTasks = [...tasks];
+      const filteredTasks = copyTasks.filter((t) => t.listId === listId);
+      setData(filteredTasks);
+      setTasksLoaded(true);
+    }
+  }, [tasks, listId]);
+
+  const taskClickHandler = (item) => {
+    navigation.navigate("Task", { id: item.id });
+  };
+
   return (
     <View style={styles.container}>
-      <Text>Tareas</Text>
+      {data.length > 0 ? (
+        <FlatList
+          data={data}
+          contentContainerStyle={globalStyles.listContainer}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              onPress={() => taskClickHandler(item)}
+              style={
+                !item.completed
+                  ? globalStyles.listItem
+                  : { ...globalStyles.listItem, ...styles.itemCompleted }
+              }
+            >
+              <View style={styles.textWrapper}>
+                <Text style={styles.itemText}>{item.name}</Text>
+                {item.completed && (
+                  <Icon
+                    name="checkmark-circle-outline"
+                    size={30}
+                    color={Colors[1]}
+                  />
+                )}
+              </View>
+            </TouchableOpacity>
+          )}
+        />
+      ) : tasksLoaded ? (
+        <Text style={globalStyles.noData}>No hay tareas en esta lista</Text>
+      ) : null}
     </View>
   );
 };
@@ -23,6 +69,20 @@ const Tasks = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  itemCompleted: {
+    backgroundColor: Colors[3],
+  },
+  textWrapper: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  itemText: {
+    fontSize: 14,
+    fontFamily: "Poppins-Regular",
+    flex: 1,
+    paddingRight: 10,
   },
 });
 
