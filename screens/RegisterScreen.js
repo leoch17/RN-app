@@ -33,7 +33,7 @@ const RegisterScreen = ({ navigation }) => {
         <Text style={styles.SubTitulo}>Registro de Cuenta</Text>
         <Text
           style={styles.ContenidoEnlaceTexto}
-          onPress={() => navigation.navigate("Home")}>
+          onPress={() => navigation.navigate("HomeS")}>
             Home
           </Text>
 

@@ -7,37 +7,27 @@ import { getLists } from "../store/actions/listActions";
 import globalStyles from "./../styles/global";
 import Lists from "../components/Lists";
 import CustomButton from "../components/CustomButton";
+import Task from "../components/Task";
+import AddListS, {taskItems} from "./AddListS";
 
-const HomeScreen = ({ navigation }) => {
+const HomeS = ({ navigation }) => {
 
-
-
-  const [loading, setLoading] = useState(true);
-  const dispatch = useDispatch();
-
-  
-  useEffect(() => {
-    dispatch(getLists(() => setLoading(false)));
-  }, [dispatch]);
-
-  if (loading) {
-    return (
-      <ActivityIndicator
-        color={Colors[1]}
-        size="large"
-        style={globalStyles.loader}
-      />
-    );
-  }
 
   return (
     <View style={styles.container}>
-     <Lists navigation={navigation} />
+        <View>
+        {
+            /*Lista de tareas*/
+            taskItems.map((item) => {
+                return <Task text={item} />
+            })
+        }
+        </View>
       <CustomButton
         text="Agregar nueva lista"
         icon="add"
         iconColor="#fff"
-        onPress={() => navigation.navigate("NewList")}
+        onPress={() => navigation.navigate("NewListS")}
       />
     </View>
   );
@@ -49,4 +39,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default HomeS;

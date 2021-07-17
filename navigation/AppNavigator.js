@@ -14,6 +14,8 @@ import { Colors } from "../constants";
 import { deleteList } from "../store/actions/listActions";
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
+import HomeS from "../screens/HomeS";
+import AddListS from "../screens/AddListS";
 
 const TasksStackNavigator = createStackNavigator();
 
@@ -89,8 +91,22 @@ const TaskNavigator = () => {
         }}
       />
       <TasksStackNavigator.Screen
+        name="HomeS"
+        component={HomeS}
+        options={{
+          ...defautlStyles,
+          title: "Tus listas",
+          headerTitleAlign: "center",
+        }}
+      />
+      <TasksStackNavigator.Screen
         name="NewList"
         component={AddListScreen}
+        options={{ ...defautlStyles, title: "Agregar nueva lista" }}
+      />
+      <TasksStackNavigator.Screen
+        name="NewListS"
+        component={AddListS}
         options={{ ...defautlStyles, title: "Agregar nueva lista" }}
       />
       <TasksStackNavigator.Screen

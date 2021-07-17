@@ -56,6 +56,9 @@ export const setActiveListId = (id) => {
   };
 };
 
+
+
+
 // Crear acciones de listas
 export const createList = (name, onSuccess = () => {}, onError = () => {}) => {
   return async (dispatch) => {
@@ -65,11 +68,21 @@ export const createList = (name, onSuccess = () => {}, onError = () => {}) => {
         id: `list-${new Date().getTime()}`,
       };
 
-      const { lists } = store.getState().lists;
+      console.log(newList);
+
+      const lists  = store.getState().lists;
+      console.log({lists});
 
       const listsCopy = [...lists];
+
+      
+      console.log("Name:" + name + ", id: " + id);
+      console.log("lists:" + lists + ", listsCopy: " + listsCopy)
+      
       listsCopy.push(newList);
       await AsyncStorage.setItem(STORAGE_KEYS.lists, JSON.stringify(listsCopy));
+
+      
 
       dispatch({
         type: SET_LISTS,

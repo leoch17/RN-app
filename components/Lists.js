@@ -7,7 +7,6 @@ import {
   FlatList,
 } from "react-native";
 import { useSelector } from "react-redux";
-//import {fonts} from '../styles/CustomFonts';
 
 import globalStyles from "../styles/global";
 
