@@ -8,7 +8,9 @@ export const getTasks = async () => {
 export const createTask = async (newTask) => {
     const res = await fetch(API, { 
         method: 'POST',
-        headers: { Accept: "application/json", "Context-Type": "application/json" },
+        headers: { 
+            Accept: "application/json", 
+            "Content-Type": "application/json" },
         body: JSON.stringify(newTask)
     });
     return  await res.json();

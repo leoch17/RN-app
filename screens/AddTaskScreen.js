@@ -1,12 +1,7 @@
 import React, { useState } from "react";
-import {
-  View,
-  TouchableWithoutFeedback,
-  StyleSheet,
-  TextInput,
-  Keyboard,
-  Alert,
-} from "react-native";
+import { View, TouchableWithoutFeedback, StyleSheet, TextInput,
+  Keyboard, Alert, Picker, Text, Button } from "react-native";
+import DateTimePicker from '@react-native-community/datetimepicker';
 import CustomButton from "../components/CustomButton";
 import { Colors } from "../constants";
 import globalStyles from "../styles/global";
@@ -23,11 +18,8 @@ const DescriptionTextInput = (props) => {
 }
 
 const AddTaskScreen = ({ navigation }) => {
-  
-  const [task, setTask] = useState({
-    nombre: '',
-    descripcion: ''
-  });
+  const [selectedValue, setSelectedValue] = useState("java");
+  const [task, setTask] = useState({ nombre: '', descripcion: '' });
 
   const handleChange = (name, value) => setTask({...task, [name]: value  });
 
@@ -36,6 +28,7 @@ const AddTaskScreen = ({ navigation }) => {
       return Alert.alert("Error de Validación", "El nombre de la tarea es requerido!");
     } else {
       try {
+        console.log(task)
         createTask(task);
         navigation.navigate("Home")
       } catch (error) {
@@ -44,10 +37,46 @@ const AddTaskScreen = ({ navigation }) => {
       
     }
   }
+
+
+  // DATETIME
+  const [date, setDate] = useState(new Date(1598051730000));
+  const [mode, setMode] = useState('date');
+  const [show, setShow] = useState(false);
+
+  const onChange = (event, selectedDate) => {
+    console.log(date);
+    const currentDate = selectedDate || date;
+    console.log(currentDate);
+    setDate(currentDate);
+  };
+
+  const showMode = (currentMode) => {
+    setShow(true);
+    setMode(currentMode);
+  };
+
+  const showDatepicker = () => {
+    showMode('date');
+  };
+
+  const showTimepicker = () => {
+    showMode('time');
+  };
     
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.container}>
+      { /* Picker para tag
+        <View style={{flexDirection: "row"}}>
+          <Text>Tag: </Text> 
+          <Picker
+          selectedValue={selectedValue}
+          style={{ height: 50, width: 150 }}>
+            <Picker.Item label="Java" value="java" />
+            <Picker.Item label="JavaScript" value="js" />
+          </Picker>
+        </View> */}
         <TextInput
           style={globalStyles.input}
           value={task.nombre}
@@ -55,6 +84,24 @@ const AddTaskScreen = ({ navigation }) => {
           placeholder="Nombre de tarea"
           placeholderTextColor={Colors[3]}
         />
+        
+        <Text style={globalStyles.noData}>Fecha y hora de vencimiento: </Text> 
+        <View>
+        <Button onPress={showDatepicker} title="Show date picker!" />
+      </View>
+      <View>
+        <Button onPress={showTimepicker} title="Show time picker!" />
+      </View>
+      {show && (
+        <DateTimePicker
+          testID="dateTimePicker"
+          value={date}
+          mode={mode}
+          is24Hour={true}
+          display="default"
+          onChange={onChange}
+        />
+      )}
         <DescriptionTextInput 
           style={globalStyles.input}
           multiline 

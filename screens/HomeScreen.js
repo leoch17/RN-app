@@ -9,9 +9,8 @@ import { getTasks } from "../api";
 
 
 const HomeScreen = ({ navigation }) => {
-  
-  const [loading, setLoading] = useState(true);
   const [tasks, setTasks] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
 
   const loadTasks = async () => {
     const data = await getTasks();
@@ -20,28 +19,18 @@ const HomeScreen = ({ navigation }) => {
   }
 
   useEffect(() => {
-    setLoading(true);
     loadTasks();
-    setLoading(false);
   }, [])
-
-  if (loading) {
-    return (
-      <ActivityIndicator
-        color={Colors[1]}
-        size="large"
-        style={globalStyles.loader}
-      />
-    );
-  }
 
   const renderItem = ({item}) => {
     return <Task text={item.nombre}></Task>;
   };
 
-  const onRefresh = () => {
-    //funcion para refrescar
-  }
+  const onRefresh = React.useCallback(async () => {
+    setRefreshing(true);
+    loadTasks();
+    setRefreshing(false);
+  })
 
 
   return (
@@ -52,9 +41,10 @@ const HomeScreen = ({ navigation }) => {
         keyExtractor={(item) => item.id + ''}
         renderItem={renderItem}
         refreshControl={
-          <RefreshControl 
+          <RefreshControl
+            refreshing={refreshing} 
             colors={[Colors[1]]}
-            onRefresh={console.log("refrescando")}/>
+            onRefresh={onRefresh}/>
         }
       />
       <CustomButton
