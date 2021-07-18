@@ -1,8 +1,6 @@
 import 'react-native-gesture-handler';
 import React from "react";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { Provider } from 'react-redux';
-import store from './store';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 
@@ -22,11 +20,9 @@ const App = () => {
     return <AppLoading />;
   } else {
   return(
-    <Provider store={store}>
       <SafeAreaProvider>
         <AppNavigator />
       </SafeAreaProvider>
-    </Provider>
     );
   }
 };

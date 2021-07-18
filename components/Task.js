@@ -7,6 +7,8 @@ import {
   FlatList,
 } from "react-native";
 import globalStyles from "../styles/global";
+import { AntDesign } from '@expo/vector-icons';
+import { Colors } from "../constants";
 
 const Task = (props) => {
     
@@ -15,9 +17,11 @@ const Task = (props) => {
     <View style={styles.container}>
         <View style={globalStyles.listContainer}>
         
-            <TouchableOpacity
-              style={globalStyles.listItem}>
-              <Text style={styles.itemText}>Esta es la tarea: {props.text}</Text>
+            <TouchableOpacity style={globalStyles.listItem}>
+              <Text style={styles.itemText}>{props.text}</Text>
+              <TouchableOpacity style={styles.iconContainer}>
+                <AntDesign name="pushpino" size={22} style={styles.icon} />
+              </TouchableOpacity>  
             </TouchableOpacity>
        
         </View>
@@ -27,14 +31,20 @@ const Task = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 20,
+    paddingVertical: 10,
     flex: 1,
   },
   itemText: {
+    maxWidth: "90%",
+    width: "90%",
     fontFamily: "Ubuntu-Regular",
     fontSize: 16,
     color: "#000",
   },
+  icon: {
+    marginRight: 5,
+    color: Colors[1]
+  }
 });
 
 export default Task;

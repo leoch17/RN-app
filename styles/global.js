@@ -3,7 +3,7 @@ import { Colors } from '../constants';
 export default {
   
   loader: {
-    marginTop: 20,
+    marginTop: 10,
   },
   noData: {
     textAlign: 'center',
@@ -17,9 +17,10 @@ export default {
     backgroundColor: '#fff',
     borderRadius: 20,
     padding: 20,
-    marginBottom: 20,
-    borderLeftWidth: 2,
+    marginBottom: 10,
+    borderLeftWidth: 2.5,
     borderLeftColor: Colors[1],
+    flexDirection: 'row',
   },
   input: {
     borderBottomWidth: 2,

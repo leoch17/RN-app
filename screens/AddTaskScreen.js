@@ -11,22 +11,30 @@ import {
 import CustomButton from "../components/CustomButton";
 import { Colors } from "../constants";
 import globalStyles from "../styles/global";
-import Task from "../components/Task";
 
-export const taskItems = [];
+const DescriptionTextInput = (props) => {
+  return (
+    <TextInput
+      {...props} 
+      editable
+      maxLength={200}
+    />
+  );
+}
 
-const AddListS = ({ navigation }) => {
+const AddTaskScreen = ({ navigation }) => {
   const [task, setTask] = useState();
   const [taskItems, setTaskItems] = useState([]);
+  const [description, onChangeText] = useState();
 
   const handleAddTask = () => {
     if (task.trim() === '') {
-      return Alert.alert("Error de Validación", "El nombre de la lista es requerido!");
+      return Alert.alert("Error de Validación", "El nombre de la tarea es requerido!");
     }
 
     setTaskItems([...taskItems, task]);
     setTask(null);
-}
+  }
     
 console.log(taskItems);
 
@@ -37,17 +45,23 @@ console.log(taskItems);
           style={globalStyles.input}
           value={task}
           onChangeText={(text) => setTask(text)}
-          placeholder="Nombre de Lista"
+          placeholder="Nombre de tarea"
           placeholderTextColor={Colors[3]}
         />
-        <CustomButton text="Crear" onPress={() => handleAddTask()} round />
+        <DescriptionTextInput 
+          style={globalStyles.input}
+          multiline 
+          numberOfLines={4}
+          onChangeText={text => onChangeText(text)}
+          placeholder="Descripción de la tarea"
+          placeholderTextColor={Colors[3]}
+          value={description}
+          
+          /> 
+        <CustomButton text="Crear tarea" onPress={() => handleAddTask()} round />
+
         <View>
-        {
-            /*Lista de tareas*/
-            taskItems.map((item) => {
-                return <Task text={item} />
-            })
-        }
+      
         </View>
 
       </View>
@@ -64,4 +78,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddListS;
+export default AddTaskScreen;

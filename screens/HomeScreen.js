@@ -1,24 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, ActivityIndicator } from "react-native";
-import { Colors } from "./../constants/index";
-import { useDispatch } from "react-redux";
+import { View, StyleSheet, ActivityIndicator, FlatList } from "react-native";
+import { Colors } from "../constants/index";
 
-import { getLists } from "../store/actions/listActions";
-import globalStyles from "./../styles/global";
-import Lists from "../components/Lists";
+import globalStyles from "../styles/global";
 import CustomButton from "../components/CustomButton";
+import Task from "../components/Task";
+import { getTasks } from "../api";
+
 
 const HomeScreen = ({ navigation }) => {
-
-
-
-  const [loading, setLoading] = useState(true);
-  const dispatch = useDispatch();
-
   
+  const [loading, setLoading] = useState(true);
+  const [tasks, setTasks] = useState([]);
+
+  const loadTasks = async () => {
+    const data = await getTasks();
+    setTasks(data);
+    console.log(data);
+  }
+
   useEffect(() => {
-    dispatch(getLists(() => setLoading(false)));
-  }, [dispatch]);
+    setLoading(true);
+    loadTasks();
+    setLoading(false);
+  }, [])
 
   if (loading) {
     return (
@@ -30,11 +35,21 @@ const HomeScreen = ({ navigation }) => {
     );
   }
 
+  const renderItem = ({item}) => {
+    return <Task text={item.nombre}></Task>;
+  };
+
+
   return (
     <View style={styles.container}>
-     <Lists navigation={navigation} />
+      <FlatList 
+        contentContainerStyle={globalStyles.listContainer}
+        data={tasks}
+        keyExtractor={(item) => item.id + ''}
+        renderItem={renderItem}
+      />
       <CustomButton
-        text="Agregar nueva lista"
+        text="Agregar nueva tarea"
         icon="add"
         iconColor="#fff"
         onPress={() => navigation.navigate("NewList")}

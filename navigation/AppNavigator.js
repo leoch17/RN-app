@@ -7,15 +7,11 @@ import { useDispatch } from "react-redux";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 
-import HomeScreen from "../screens/HomeScreen";
-import AddListScreen from "../screens/AddListScreen";
-import ListScreen from "../screens/ListScreen";
 import { Colors } from "../constants";
-import { deleteList } from "../store/actions/listActions";
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
-import HomeS from "../screens/HomeS";
-import AddListS from "../screens/AddListS";
+import HomeScreen from "../screens/HomeScreen";
+import AddTaskScreen from "../screens/AddTaskScreen"
 
 const TasksStackNavigator = createStackNavigator();
 
@@ -36,30 +32,6 @@ const styles = StyleSheet.create({
 });
 
 const TaskNavigator = () => {
-  const dispatch = useDispatch();
-
-  const deleteListClickHandler = (id, navigation) => {
-    Alert.alert(
-      "Eliminar lista",
-      "¿Estas seguro de que quieres eliminar esta lista?",
-      [
-        { text: "Cancelar" },
-        { text: "Eliminar", onPress: () => deleteListHandler(id, navigation) },
-      ]
-    );
-  };
-
-  const deleteListHandler = (id, navigation) => {
-    dispatch(
-      deleteList(id, () => {
-        navigation.goBack();
-        ToastAndroid.show(
-          "Lista eliminada Satisfactoriamente!",
-          ToastAndroid.LONG
-        );
-      })
-    );
-  };
 
   return (
     <TasksStackNavigator.Navigator>
@@ -86,48 +58,14 @@ const TaskNavigator = () => {
         component={HomeScreen}
         options={{
           ...defautlStyles,
-          title: "Tus listas",
-          headerTitleAlign: "center",
-        }}
-      />
-      <TasksStackNavigator.Screen
-        name="HomeS"
-        component={HomeS}
-        options={{
-          ...defautlStyles,
-          title: "Tus listas",
+          title: "Tus tareas",
           headerTitleAlign: "center",
         }}
       />
       <TasksStackNavigator.Screen
         name="NewList"
-        component={AddListScreen}
-        options={{ ...defautlStyles, title: "Agregar nueva lista" }}
-      />
-      <TasksStackNavigator.Screen
-        name="NewListS"
-        component={AddListS}
-        options={{ ...defautlStyles, title: "Agregar nueva lista" }}
-      />
-      <TasksStackNavigator.Screen
-        name="List"
-        component={ListScreen}
-        options={({ route, navigation }) => ({
-          ...defautlStyles,
-          title: route.params.name,
-          headerRight: () => (
-            <View style={styles.headerRightSpace}>
-              <Icon
-                name="md-trash"
-                color="#fff"
-                size={30}
-                onPress={() =>
-                  deleteListClickHandler(route.params.id, navigation)
-                }
-              />
-            </View>
-          ),
-        })}
+        component={AddTaskScreen}
+        options={{ ...defautlStyles, title: "Agregar nueva tarea" }}
       />
     </TasksStackNavigator.Navigator>
   );
