@@ -6,11 +6,11 @@ import {
   TextInput,
   Keyboard,
   Alert,
-  ToastAndroid,
 } from "react-native";
 import CustomButton from "../components/CustomButton";
 import { Colors } from "../constants";
 import globalStyles from "../styles/global";
+import { createTask } from "../api";
 
 const DescriptionTextInput = (props) => {
   return (
@@ -23,28 +23,35 @@ const DescriptionTextInput = (props) => {
 }
 
 const AddTaskScreen = ({ navigation }) => {
-  const [task, setTask] = useState();
-  const [taskItems, setTaskItems] = useState([]);
-  const [description, onChangeText] = useState();
+  
+  const [task, setTask] = useState({
+    nombre: '',
+    descripcion: ''
+  });
 
-  const handleAddTask = () => {
-    if (task.trim() === '') {
+  const handleChange = (name, value) => setTask({...task, [name]: value  });
+
+  const handleSubmit = () => {
+    if (task.nombre.trim() === '') {
       return Alert.alert("Error de Validación", "El nombre de la tarea es requerido!");
+    } else {
+      try {
+        createTask(task);
+        navigation.navigate("Home")
+      } catch (error) {
+        console.log(error);
+      }
+      
     }
-
-    setTaskItems([...taskItems, task]);
-    setTask(null);
   }
     
-console.log(taskItems);
-
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.container}>
         <TextInput
           style={globalStyles.input}
-          value={task}
-          onChangeText={(text) => setTask(text)}
+          value={task.nombre}
+          onChangeText={(text) => handleChange('nombre', text)}
           placeholder="Nombre de tarea"
           placeholderTextColor={Colors[3]}
         />
@@ -52,13 +59,12 @@ console.log(taskItems);
           style={globalStyles.input}
           multiline 
           numberOfLines={4}
-          onChangeText={text => onChangeText(text)}
-          placeholder="Descripción de la tarea"
+          value={task.descripcion}
+          onChangeText={(text) => handleChange('descripcion', text)}
+          placeholder="Describe la tarea, o anota lo que quieras :)"
           placeholderTextColor={Colors[3]}
-          value={description}
-          
           /> 
-        <CustomButton text="Crear tarea" onPress={() => handleAddTask()} round />
+        <CustomButton text="Crear tarea" onPress={() => handleSubmit()} round />
 
         <View>
       

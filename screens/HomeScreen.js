@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, ActivityIndicator, FlatList } from "react-native";
+import { View, StyleSheet, ActivityIndicator, FlatList, RefreshControl } from "react-native";
 import { Colors } from "../constants/index";
 
 import globalStyles from "../styles/global";
@@ -39,6 +39,10 @@ const HomeScreen = ({ navigation }) => {
     return <Task text={item.nombre}></Task>;
   };
 
+  const onRefresh = () => {
+    //funcion para refrescar
+  }
+
 
   return (
     <View style={styles.container}>
@@ -47,6 +51,11 @@ const HomeScreen = ({ navigation }) => {
         data={tasks}
         keyExtractor={(item) => item.id + ''}
         renderItem={renderItem}
+        refreshControl={
+          <RefreshControl 
+            colors={[Colors[1]]}
+            onRefresh={console.log("refrescando")}/>
+        }
       />
       <CustomButton
         text="Agregar nueva tarea"
