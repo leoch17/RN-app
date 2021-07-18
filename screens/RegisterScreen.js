@@ -25,6 +25,40 @@ const ini = " Inicia Sesión";
 
 const RegisterScreen = ({ navigation }) => {
   const [hidePassword, setHidePassword] = useState(true);
+  const [message, setMessage] = useState();
+  const [messageType, setMessageType] = useState();
+
+  //form handling
+  const handleRegisterScreen = (credentials, setSubmitting) => {
+    handleMessage(null);
+    const url = "https://wunderlist-back.herokuapp.com/";
+
+    axios
+      .post(url, credentials)
+      .then((response) => {
+        const result = response.data;
+        const { message, status, data } = result;
+
+        if (status !== "SUCCESS") {
+          handleMessage(message, status);
+        } else {
+          navigation.navigate("Home", { ...data });
+        }
+        setSubmitting(false);
+      })
+      .catch((error) => {
+        console.log(error.JSON());
+        setSubmitting(false);
+        handleMessage(
+          "Ha ocurrido un error. Revisa tu conexión e intentalo de nuevo"
+        );
+      });
+  };
+
+  const handleMessage = (message, type = "FAILED") => {
+    setMessage(message);
+    setMessageType(type);
+  };
 
   return (
     <ScrollView style={styles.ContenedorEstilizado}>
@@ -33,9 +67,10 @@ const RegisterScreen = ({ navigation }) => {
         <Text style={styles.SubTitulo}>Registro de Cuenta</Text>
         <Text
           style={styles.ContenidoEnlaceTexto}
-          onPress={() => navigation.navigate("Home")}>
-            Home
-          </Text>
+          onPress={() => navigation.navigate("Home")}
+        >
+          Home
+        </Text>
 
         <Formik
           initialValues={{
@@ -46,8 +81,18 @@ const RegisterScreen = ({ navigation }) => {
             password: "",
             confirmPassword: "",
           }}
-          onSubmit={(values) => {
-            console.log(values);
+          onSubmit={(values, { setSubmitting }) => {
+            if (
+              values.email == "" ||
+              values.password == "" ||
+              values.name == "" ||
+              values.username == ""
+            ) {
+              handleMessage("Por favor llenar todos los campos");
+              setSubmitting(false);
+            } else {
+              handleLogin(values, setSubmitting);
+            }
           }}
         >
           {({ handleChange, handleBlur, handleSubmit, values }) => (
