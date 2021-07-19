@@ -20,7 +20,7 @@ const CustomButton = ({ onPress, text, round, icon, iconColor, danger, style }) 
   return (
     <TouchableHighlight onPress={onPress} activeOpacity={0.8} style={round ? styles.round : {}} underlayColor="transparent">
       <View style={styles.container}>
-        {icon && <AntDesign name="plus" size={24} color={iconColor} style={styles.icon} />}
+        {icon && <AntDesign name={icon} size={24} color={iconColor} style={styles.icon} />}
         <Text style={styles.text}>{text}</Text>
       </View>
     </TouchableHighlight>

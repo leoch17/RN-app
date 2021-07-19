@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, ActivityIndicator, FlatList, RefreshControl } from "react-native";
+import { View, StyleSheet, ActivityIndicator, FlatList, RefreshControl, TextInput } from "react-native";
 import { Colors } from "../constants/index";
 
 import globalStyles from "../styles/global";
 import CustomButton from "../components/CustomButton";
 import Task from "../components/Task";
-import { getTasks } from "../api";
+import { getTasks } from "../api/api.tasks";
 
 
 const HomeScreen = ({ navigation }) => {
@@ -32,9 +32,14 @@ const HomeScreen = ({ navigation }) => {
     setRefreshing(false);
   })
 
+  const handleSearch = () => {
+
+  }
+
 
   return (
     <View style={styles.container}>
+      <TextInput placeholder="Buscar" onChangeText={handleSearch} ></TextInput>
       <FlatList 
         contentContainerStyle={globalStyles.listContainer}
         data={tasks}
@@ -49,7 +54,7 @@ const HomeScreen = ({ navigation }) => {
       />
       <CustomButton
         text="Agregar nueva tarea"
-        icon="add"
+        icon="plus"
         iconColor="#fff"
         onPress={() => navigation.navigate("NewList")}
       />

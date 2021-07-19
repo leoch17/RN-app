@@ -1,12 +1,12 @@
-const API = 'http://192.168.5.108:4000/tareas'
+import { API } from "../constants"
 
 export const getTasks = async () => {
-    const res = await fetch(API)
+    const res = await fetch(API.DIEGO_TAREAS)
     return await res.json()
 }
 
 export const createTask = async (newTask) => {
-    const res = await fetch(API, { 
+    const res = await fetch(API.DIEGO_TAREAS, { 
         method: 'POST',
         headers: { 
             Accept: "application/json", 
@@ -15,3 +15,4 @@ export const createTask = async (newTask) => {
     });
     return  await res.json();
 }
+
