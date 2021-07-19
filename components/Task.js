@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import {
   View,
   Text,
@@ -12,7 +12,7 @@ import { Colors } from "../constants";
 
 const Task = (props) => {
     
-
+const [iconText, seticonText] = useState("puspino")
   return (
     <View style={styles.container}>
         <View style={globalStyles.listContainer}>
@@ -20,7 +20,7 @@ const Task = (props) => {
             <TouchableOpacity style={globalStyles.listItem}>
               <Text style={styles.itemText}>{props.text}</Text>
               <TouchableOpacity style={styles.iconContainer}>
-                <AntDesign name="pushpino" size={22} style={styles.icon} />
+                <AntDesign name={iconText} onPress={seticonText("pushpin")} size={22} style={styles.icon} />
               </TouchableOpacity>  
             </TouchableOpacity>
        
