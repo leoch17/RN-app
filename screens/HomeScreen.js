@@ -1,19 +1,13 @@
 import React, { useEffect, useState } from "react";
-import {
-  View,
-  StyleSheet,
-  FlatList,
-  RefreshControl,
-  TouchableOpacity,
-} from "react-native";
+import { View, StyleSheet, ActivityIndicator, FlatList, RefreshControl, TextInput, TouchableOpacity } from "react-native";
 import { Colors } from "../constants/index";
 
 import globalStyles from "../styles/global";
 import CustomButton from "../components/CustomButton";
 import Task from "../components/Task";
-import { getTasks } from "../api";
 import { useNavigation } from "@react-navigation/native";
 import { useIsFocused } from "@react-navigation/native";
+import { getTasks } from "../api/api.tasks";
 
 const HomeScreen = ({ navigation }) => {
   const [tasks, setTasks] = useState([]);
@@ -40,7 +34,12 @@ const HomeScreen = ({ navigation }) => {
     setRefreshing(true);
     loadTasks();
     setRefreshing(false);
-  });
+  })
+
+  const handleSearch = () => {
+
+  }
+
 
   return (
     <View style={styles.container}>
@@ -61,7 +60,7 @@ const HomeScreen = ({ navigation }) => {
       </TouchableOpacity>
       <CustomButton
         text="Agregar nueva tarea"
-        icon="add"
+        icon="plus"
         iconColor="#fff"
         onPress={() => navigation.navigate("NewList")}
       />

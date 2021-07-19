@@ -13,7 +13,9 @@ export const Colors = {
   rojo: "#EF4444",
 };
 
-export const STORAGE_KEYS = {
-    lists: 'myapp_lists',
-    tasks: 'myapp_tasks',
+export const API = {
+    LOCAL_TAREAS: 'http://localhost:4000/tareas',
+    LOCAL_USUARIOS: 'http://localhost:4000/usuarios',
+    DIEGO_TAREAS: 'http://192.168.5.108:4000/tareas',
+    DIEGO_USUARIOS: 'http://192.168.5.108:4000/tareas',
 };

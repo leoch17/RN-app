@@ -12,13 +12,17 @@ import {
   TouchableOpacity,
   Text,
   TextInput,
-  ActivityIndicator,
+  Button,
+  Alert,
 } from "react-native";
 
 //Estilos
 import styles from "./../styles/global";
 import { Colors } from "./../constants/index";
 import { Colores } from "../styles/styles";
+
+//Registrar
+import { createUser } from "../api/api.tasks";
 
 const cuenta = "¿Ya tienes una cuenta? ";
 const ini = " Inicia Sesión";
@@ -68,23 +72,22 @@ const RegisterScreen = ({ navigation }) => {
 
         <Formik
           initialValues={{
-            fullName: "",
-            user: "",
-            email: "",
-            password: "",
+            nombre: "",
+            usuario: "",
+            correo: "",
+            clave: "",
           }}
-          onSubmit={(values, { setSubmitting }) => {
-            if (
-              values.email == "" ||
-              values.password == "" ||
-              values.name == "" ||
-              values.user == ""
-            ) {
-              handleMessage("Por favor llenar todos los campos");
-              setSubmitting(false);
-            } else {
-              handleRegisterScreen(values, setSubmitting);
+          onSubmit={(values) => {
+            try {
+              console.log(values);
+              createUser(values);
+              Alert.alert("Registro exitoso", "Su usuario ha sido registrado exitosamente!!")
+            navigation.navigate("Login")
+            } catch (error) {
+              console.log(error)
+              Alert.alert("Registro fallido", "No se pudo registrar su usuario :(")
             }
+            
           }}
         >
           {({ handleChange, handleBlur, values, isSubmitting }) => (
@@ -94,9 +97,9 @@ const RegisterScreen = ({ navigation }) => {
                 icon="person"
                 placeholder="Luis Acurero"
                 placeholderTextColor={Colors.luzoscuro}
-                onChangeText={handleChange("fullName")}
-                onBlur={handleBlur("fullName")}
-                value={values.fullName}
+                onChangeText={handleChange("nombre")}
+                onBlur={handleBlur("nombre")}
+                value={values.nombre}
               />
 
               <MiTextoEntrada
@@ -104,9 +107,9 @@ const RegisterScreen = ({ navigation }) => {
                 icon="person"
                 placeholder="RocketMan20"
                 placeholderTextColor={Colors.luzoscuro}
-                onChangeText={handleChange("user")}
-                onBlur={handleBlur("user")}
-                value={values.user}
+                onChangeText={handleChange("usuario")}
+                onBlur={handleBlur("usuario")}
+                value={values.usuario}
               />
 
               <MiTextoEntrada
@@ -114,9 +117,9 @@ const RegisterScreen = ({ navigation }) => {
                 icon="mail"
                 placeholder="LuisAcu@gmail.com"
                 placeholderTextColor={Colors.luzoscuro}
-                onChangeText={handleChange("email")}
-                onBlur={handleBlur("email")}
-                value={values.email}
+                onChangeText={handleChange("correo")}
+                onBlur={handleBlur("correo")}
+                value={values.correo}
                 keyboardType="email-address"
               />
 
@@ -125,9 +128,9 @@ const RegisterScreen = ({ navigation }) => {
                 icon="lock"
                 placeholder="***************"
                 placeholderTextColor={Colors.luzoscuro}
-                onChangeText={handleChange("password")}
-                onBlur={handleBlur("password")}
-                value={values.password}
+                onChangeText={handleChange("clave")}
+                onBlur={handleBlur("clave")}
+                value={values.clave}
                 secureTextEntry={hidePassword}
                 isPassword={true}
                 hidePassword={hidePassword}
