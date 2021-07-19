@@ -2,16 +2,13 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { View, StyleSheet, Alert, ToastAndroid } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
-import { useDispatch } from "react-redux";
-import { useFonts } from "expo-font";
-import AppLoading from "expo-app-loading";
 
 import { Colors } from "../constants";
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
 import HomeScreen from "../screens/HomeScreen";
-import AddTaskScreen from "../screens/AddTaskScreen"
+import AddTaskScreen from "../screens/AddTaskScreen";
+import UpdateTaskScreen from "../screens/UpdateTaskScreen";
 
 const TasksStackNavigator = createStackNavigator();
 
@@ -32,7 +29,6 @@ const styles = StyleSheet.create({
 });
 
 const TaskNavigator = () => {
-
   return (
     <TasksStackNavigator.Navigator>
       <TasksStackNavigator.Screen
@@ -66,6 +62,16 @@ const TaskNavigator = () => {
         name="NewList"
         component={AddTaskScreen}
         options={{ ...defautlStyles, title: "Agregar nueva tarea" }}
+      />
+
+      <TasksStackNavigator.Screen
+        name="Update"
+        component={UpdateTaskScreen}
+        options={{
+          ...defautlStyles,
+          title: "Editar Tareas",
+          headerTitleAlign: "center",
+        }}
       />
     </TasksStackNavigator.Navigator>
   );

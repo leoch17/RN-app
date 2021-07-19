@@ -1,30 +1,20 @@
 import React, { Component } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  FlatList,
-} from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import globalStyles from "../styles/global";
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign } from "@expo/vector-icons";
 import { Colors } from "../constants";
 
 const Task = (props) => {
-    
-
   return (
     <View style={styles.container}>
-        <View style={globalStyles.listContainer}>
-        
-            <TouchableOpacity style={globalStyles.listItem}>
-              <Text style={styles.itemText}>{props.text}</Text>
-              <TouchableOpacity style={styles.iconContainer}>
-                <AntDesign name="pushpino" size={22} style={styles.icon} />
-              </TouchableOpacity>  
-            </TouchableOpacity>
-       
-        </View>
+      <View style={globalStyles.listContainer}>
+        <TouchableOpacity style={globalStyles.listItem}>
+          <Text style={styles.itemText}>{props.text}</Text>
+          <TouchableOpacity style={styles.iconContainer}>
+            <AntDesign name="pushpino" size={22} style={styles.icon} />
+          </TouchableOpacity>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -43,8 +33,8 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginRight: 5,
-    color: Colors[1]
-  }
+    color: Colors[1],
+  },
 });
 
 export default Task;

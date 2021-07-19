@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import {
   View,
   StyleSheet,
-  ActivityIndicator,
   FlatList,
   RefreshControl,
+  TouchableOpacity,
 } from "react-native";
 import { Colors } from "../constants/index";
 
@@ -12,10 +12,15 @@ import globalStyles from "../styles/global";
 import CustomButton from "../components/CustomButton";
 import Task from "../components/Task";
 import { getTasks } from "../api";
+import { useNavigation } from "@react-navigation/native";
+import { useIsFocused } from "@react-navigation/native";
 
 const HomeScreen = ({ navigation }) => {
   const [tasks, setTasks] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
+  const navigat = useNavigation();
+
+  const isFocused = useIsFocused();
 
   const loadTasks = async () => {
     const data = await getTasks();
@@ -25,7 +30,7 @@ const HomeScreen = ({ navigation }) => {
 
   useEffect(() => {
     loadTasks();
-  }, []);
+  }, [isFocused]);
 
   const renderItem = ({ item }) => {
     return <Task text={item.nombre}></Task>;
@@ -39,19 +44,21 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <FlatList
-        contentContainerStyle={globalStyles.listContainer}
-        data={tasks}
-        keyExtractor={(item) => item.id + ""}
-        renderItem={renderItem}
-        refreshControl={
-          <RefreshControl
-            refreshing={refreshing}
-            colors={[Colors[1]]}
-            onRefresh={onRefresh}
-          />
-        }
-      />
+      <TouchableOpacity onPress={() => navigation.navigate("Update")}>
+        <FlatList
+          contentContainerStyle={globalStyles.listContainer}
+          data={tasks}
+          keyExtractor={(item) => item.id + ""}
+          renderItem={renderItem}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              colors={[Colors[1]]}
+              onRefresh={onRefresh}
+            />
+          }
+        />
+      </TouchableOpacity>
       <CustomButton
         text="Agregar nueva tarea"
         icon="add"
