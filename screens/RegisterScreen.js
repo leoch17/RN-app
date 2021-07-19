@@ -12,13 +12,12 @@ import {
   TouchableOpacity,
   Text,
   TextInput,
-  Button,
+  ActivityIndicator,
 } from "react-native";
 
 //Estilos
 import styles from "./../styles/global";
 import { Colors } from "./../constants/index";
-import HomeScreen from "./HomeScreen";
 
 const cuenta = "¿Ya tienes una cuenta? ";
 const ini = " Inicia Sesión";
@@ -65,37 +64,36 @@ const RegisterScreen = ({ navigation }) => {
       <View style={styles.ContenedorInterno}>
         <Text style={styles.TituloPagina}>Wunderlist</Text>
         <Text style={styles.SubTitulo}>Registro de Cuenta</Text>
-        <Text
-          style={styles.ContenidoEnlaceTexto}
-          onPress={() => navigation.navigate("Home")}
-        >
-          Home
-        </Text>
+        <Text style={styles.ContenidoEnlaceTexto}>Home</Text>
 
         <Formik
           initialValues={{
             fullName: "",
             user: "",
             email: "",
-            dateOfBirth: "",
             password: "",
-            confirmPassword: "",
           }}
           onSubmit={(values, { setSubmitting }) => {
             if (
               values.email == "" ||
               values.password == "" ||
               values.name == "" ||
-              values.username == ""
+              values.user == ""
             ) {
               handleMessage("Por favor llenar todos los campos");
               setSubmitting(false);
             } else {
-              handleLogin(values, setSubmitting);
+              handleRegisterScreen(values, setSubmitting);
             }
           }}
         >
-          {({ handleChange, handleBlur, handleSubmit, values }) => (
+          {({
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            values,
+            isSubmitting,
+          }) => (
             <View style={styles.AreaFormularioEstilizado}>
               <MiTextoEntrada
                 label="Nombre Completo"
@@ -142,13 +140,27 @@ const RegisterScreen = ({ navigation }) => {
                 setHidePassword={setHidePassword}
               />
 
-              <Text style={styles.CajaMensaje}>...</Text>
-              <TouchableOpacity
-                style={styles.BotonEstilizado}
-                onPress={handleSubmit}
-              >
-                <Text style={styles.BotonTexto}>Regístrate</Text>
-              </TouchableOpacity>
+              <Text style={styles.CajaMensaje} type={messageType}>
+                {message}
+              </Text>
+
+              {!isSubmitting && (
+                <TouchableOpacity
+                  style={styles.BotonEstilizado}
+                  onPress={() => navigation.navigate("Login")}
+                >
+                  <Text style={styles.BotonTexto}>Regístrate</Text>
+                </TouchableOpacity>
+              )}
+
+              {!isSubmitting && (
+                <TouchableOpacity
+                  disabled={true}
+                  style={styles.BotonEstilizado}
+                >
+                  <TouchableOpacity style={styles.ActivityIndicator} />
+                </TouchableOpacity>
+              )}
 
               <View style={styles.VistaExtra}>
                 <Text style={styles.TextoExtra}>

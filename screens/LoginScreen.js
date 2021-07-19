@@ -21,9 +21,6 @@ import { Colors } from "./../constants/index";
 // Cliente de axios
 import axios from "axios";
 
-//Cliente API
-import axios from "axios";
-
 const LoginScreen = ({ navigation }) => {
   const [hidePassword, setHidePassword] = useState(true);
   const [message, setMessage] = useState();
@@ -73,7 +70,7 @@ const LoginScreen = ({ navigation }) => {
               handleMessage("Por favor llenar todos los campos");
               setSubmitting(false);
             } else {
-              handleLogin(values, setSubmitting);
+              handleLoginScreen(values, setSubmitting);
             }
           }}
         >
@@ -103,13 +100,27 @@ const LoginScreen = ({ navigation }) => {
                 hidePassword={hidePassword}
                 setHidePassword={setHidePassword}
               />
-              <Text style={styles.CajaMensaje}>...</Text>
-              <TouchableOpacity
-                style={styles.BotonEstilizado}
-                onPress={() => navigation.navigate("Home")}
-              >
-                <Text style={styles.BotonTexto}>Iniciar Sesión</Text>
-              </TouchableOpacity>
+              <Text style={styles.CajaMensaje} type={messageType}>
+                {message}
+              </Text>
+              {!isSubmitting && (
+                <TouchableOpacity
+                  style={styles.BotonEstilizado}
+                  onPress={() => navigation.navigate("Home")}
+                >
+                  <Text style={styles.BotonTexto}>Iniciar Sesión</Text>
+                </TouchableOpacity>
+              )}
+
+              {!isSubmitting && (
+                <TouchableOpacity
+                  disabled={true}
+                  style={styles.BotonEstilizado}
+                >
+                  <TouchableOpacity style={styles.ActivityIndicator} />
+                </TouchableOpacity>
+              )}
+
               <View style={styles.VistaExtra}>
                 <Text style={styles.TextoExtra}>
                   ¿Aún no tienes una cuenta?{" "}
