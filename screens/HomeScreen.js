@@ -7,7 +7,6 @@ import CustomButton from "../components/CustomButton";
 import Task from "../components/Task";
 import { getTasks } from "../api/api.tasks";
 
-
 const HomeScreen = ({ navigation }) => {
   const [tasks, setTasks] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
@@ -16,13 +15,13 @@ const HomeScreen = ({ navigation }) => {
     const data = await getTasks();
     setTasks(data);
     console.log(data);
-  }
+  };
 
   useEffect(() => {
     loadTasks();
-  }, [])
+  }, []);
 
-  const renderItem = ({item}) => {
+  const renderItem = ({ item }) => {
     return <Task text={item.nombre}></Task>;
   };
 
@@ -43,13 +42,14 @@ const HomeScreen = ({ navigation }) => {
       <FlatList 
         contentContainerStyle={globalStyles.listContainer}
         data={tasks}
-        keyExtractor={(item) => item.id + ''}
+        keyExtractor={(item) => item.id + ""}
         renderItem={renderItem}
         refreshControl={
           <RefreshControl
-            refreshing={refreshing} 
+            refreshing={refreshing}
             colors={[Colors[1]]}
-            onRefresh={onRefresh}/>
+            onRefresh={onRefresh}
+          />
         }
       />
       <CustomButton

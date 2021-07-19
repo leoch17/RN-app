@@ -10,14 +10,8 @@ import * as Notifications from 'expo-notifications';
 
 // Input de descripción
 const DescriptionTextInput = (props) => {
-  return (
-    <TextInput
-      {...props} 
-      editable
-      maxLength={200}
-    />
-  );
-}
+  return <TextInput {...props} editable maxLength={200} />;
+};
 
 
 const AddTaskScreen = ({ navigation }) => {
@@ -27,11 +21,14 @@ const AddTaskScreen = ({ navigation }) => {
   const handleChange = (name, value) => setTask({...task, [name]: value  });
 
   const handleSubmit = () => {
-    if (task.nombre.trim() === '') {
-      return Alert.alert("Error de Validación", "El nombre de la tarea es requerido!");
+    if (task.nombre.trim() === "") {
+      return Alert.alert(
+        "Error de Validación",
+        "El nombre de la tarea es requerido!"
+      );
     } else {
       try {
-        console.log(task)
+        console.log(task);
         createTask(task);
         if (switchValue === true) {
           console.log(date1)
@@ -41,10 +38,8 @@ const AddTaskScreen = ({ navigation }) => {
       } catch (error) {
         console.log(error);
       }
-      
     }
-  }
-
+  };
 
   
   // Notificacion
@@ -116,7 +111,7 @@ const AddTaskScreen = ({ navigation }) => {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.container}>
-      { /* Picker para tag
+        {/* Picker para tag
         <View style={{flexDirection: "row"}}>
           <Text>Tag: </Text> 
           <Picker
@@ -129,7 +124,7 @@ const AddTaskScreen = ({ navigation }) => {
         <TextInput
           style={globalStyles.input}
           value={task.nombre}
-          onChangeText={(text) => handleChange('nombre', text)}
+          onChangeText={(text) => handleChange("nombre", text)}
           placeholder="Nombre de tarea"
           placeholderTextColor={Colors[3]}
         />
@@ -183,19 +178,16 @@ const AddTaskScreen = ({ navigation }) => {
         
         <DescriptionTextInput 
           style={globalStyles.input}
-          multiline 
+          multiline
           numberOfLines={4}
           value={task.descripcion}
-          onChangeText={(text) => handleChange('descripcion', text)}
+          onChangeText={(text) => handleChange("descripcion", text)}
           placeholder="Describe la tarea, o anota lo que quieras :)"
           placeholderTextColor={Colors[3]}
-          /> 
+        />
         <CustomButton text="Crear tarea" onPress={() => handleSubmit()} round />
 
-        <View>
-      
-        </View>
-
+        <View></View>
       </View>
     </TouchableWithoutFeedback>
   );

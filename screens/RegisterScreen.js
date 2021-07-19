@@ -19,7 +19,7 @@ import {
 //Estilos
 import styles from "./../styles/global";
 import { Colors } from "./../constants/index";
-import HomeScreen from "./HomeScreen";
+import { Colores } from "../styles/styles";
 
 //Registrar
 import { createUser } from "../api/api.tasks";
@@ -29,17 +29,46 @@ const ini = " Inicia Sesión";
 
 const RegisterScreen = ({ navigation }) => {
   const [hidePassword, setHidePassword] = useState(true);
+  const [message, setMessage] = useState();
+  const [messageType, setMessageType] = useState();
+
+  //form handling
+  const handleRegisterScreen = (credentials, setSubmitting) => {
+    handleMessage(null);
+    const url = "https://wunderlist-back.herokuapp.com/";
+
+    axios
+      .post(url, credentials)
+      .then((response) => {
+        const result = response.data;
+        const { message, status, data } = result;
+
+        if (status !== "SUCCESS") {
+          handleMessage(message, status);
+        } else {
+          navigation.navigate({ ...data });
+        }
+        setSubmitting(false);
+      })
+      .catch((error) => {
+        console.log(error.JSON());
+        setSubmitting(false);
+        handleMessage(
+          "Ha ocurrido un error. Revisa tu conexión e intentalo de nuevo"
+        );
+      });
+  };
+
+  const handleMessage = (message, type = "FAILED") => {
+    setMessage(message);
+    setMessageType(type);
+  };
 
   return (
     <ScrollView style={styles.ContenedorEstilizado}>
       <View style={styles.ContenedorInterno}>
         <Text style={styles.TituloPagina}>Wunderlist</Text>
         <Text style={styles.SubTitulo}>Registro de Cuenta</Text>
-        <Text
-          style={styles.ContenidoEnlaceTexto}
-          onPress={() => navigation.navigate("Home")}>
-            Home
-          </Text>
 
         <Formik
           initialValues={{
@@ -61,7 +90,7 @@ const RegisterScreen = ({ navigation }) => {
             
           }}
         >
-          {({ handleChange, handleBlur, handleSubmit, values }) => (
+          {({ handleChange, handleBlur, values, isSubmitting }) => (
             <View style={styles.AreaFormularioEstilizado}>
               <MiTextoEntrada
                 label="Nombre Completo"
@@ -108,13 +137,27 @@ const RegisterScreen = ({ navigation }) => {
                 setHidePassword={setHidePassword}
               />
 
-              <Text style={styles.CajaMensaje}>...</Text>
-              <TouchableOpacity
-                style={styles.BotonEstilizado}
-                onPress={handleSubmit}
-              >
-                <Text style={styles.BotonTexto}>Regístrate</Text>
-              </TouchableOpacity>
+              <Text style={styles.CajaMensaje} type={messageType}>
+                {message}
+              </Text>
+
+              {!isSubmitting && (
+                <TouchableOpacity
+                  style={styles.BotonEstilizado}
+                  onPress={() => navigation.navigate("Login")}
+                >
+                  <Text style={styles.BotonTexto}>Regístrate</Text>
+                </TouchableOpacity>
+              )}
+
+              {!isSubmitting && (
+                <TouchableOpacity
+                  disabled={true}
+                  style={styles.BotonEstilizado}
+                >
+                  <ActivityIndicator size="large" color={Colores.primario} />
+                </TouchableOpacity>
+              )}
 
               <View style={styles.VistaExtra}>
                 <Text style={styles.TextoExtra}>
