@@ -18,6 +18,7 @@ import {
 //Estilos
 import styles from "./../styles/global";
 import { Colors } from "./../constants/index";
+import { Colores } from "../styles/styles";
 
 const cuenta = "¿Ya tienes una cuenta? ";
 const ini = " Inicia Sesión";
@@ -41,7 +42,7 @@ const RegisterScreen = ({ navigation }) => {
         if (status !== "SUCCESS") {
           handleMessage(message, status);
         } else {
-          navigation.navigate("Home", { ...data });
+          navigation.navigate({ ...data });
         }
         setSubmitting(false);
       })
@@ -64,7 +65,6 @@ const RegisterScreen = ({ navigation }) => {
       <View style={styles.ContenedorInterno}>
         <Text style={styles.TituloPagina}>Wunderlist</Text>
         <Text style={styles.SubTitulo}>Registro de Cuenta</Text>
-        <Text style={styles.ContenidoEnlaceTexto}>Home</Text>
 
         <Formik
           initialValues={{
@@ -87,13 +87,7 @@ const RegisterScreen = ({ navigation }) => {
             }
           }}
         >
-          {({
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            values,
-            isSubmitting,
-          }) => (
+          {({ handleChange, handleBlur, values, isSubmitting }) => (
             <View style={styles.AreaFormularioEstilizado}>
               <MiTextoEntrada
                 label="Nombre Completo"
@@ -158,7 +152,7 @@ const RegisterScreen = ({ navigation }) => {
                   disabled={true}
                   style={styles.BotonEstilizado}
                 >
-                  <TouchableOpacity style={styles.ActivityIndicator} />
+                  <ActivityIndicator size="large" color={Colores.primario} />
                 </TouchableOpacity>
               )}
 

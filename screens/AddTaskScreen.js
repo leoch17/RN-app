@@ -6,11 +6,11 @@ import {
   TextInput,
   Keyboard,
   Alert,
-  Picker,
+  //Picker,
   Text,
   Button,
 } from "react-native";
-import DateTimePicker from "@react-native-community/datetimepicker";
+//import DateTimePicker from "@react-native-community/datetimepicker";
 import CustomButton from "../components/CustomButton";
 import { Colors } from "../constants";
 import globalStyles from "../styles/global";
