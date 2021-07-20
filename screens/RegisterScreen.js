@@ -13,13 +13,12 @@ import {
   Text,
   TextInput,
   Button,
-  Alert,
+  Alert
 } from "react-native";
 
 //Estilos
-import styles from "./../styles/global";
+import globalStyles from "./../styles/global";
 import { Colors } from "./../constants/index";
-import { Colores } from "../styles/styles";
 
 //Registrar
 import { createUser } from "../api/api.tasks";
@@ -33,6 +32,7 @@ const RegisterScreen = ({ navigation }) => {
   const [messageType, setMessageType] = useState();
 
   //form handling
+  /*
   const handleRegisterScreen = (credentials, setSubmitting) => {
     handleMessage(null);
     const url = "https://wunderlist-back.herokuapp.com/";
@@ -58,17 +58,19 @@ const RegisterScreen = ({ navigation }) => {
         );
       });
   };
+  
 
   const handleMessage = (message, type = "FAILED") => {
     setMessage(message);
     setMessageType(type);
   };
-
+  */
+  
   return (
-    <ScrollView style={styles.ContenedorEstilizado}>
-      <View style={styles.ContenedorInterno}>
-        <Text style={styles.TituloPagina}>Wunderlist</Text>
-        <Text style={styles.SubTitulo}>Registro de Cuenta</Text>
+    <ScrollView style={globalStyles.ContenedorEstilizado}>
+      <View style={globalStyles.ContenedorInterno}>
+        <Text style={globalStyles.TituloPagina}>Wunderlist</Text>
+        <Text style={globalStyles.SubTitulo}>Registro de Cuenta</Text>
 
         <Formik
           initialValues={{
@@ -89,9 +91,8 @@ const RegisterScreen = ({ navigation }) => {
             }
             
           }}
-        >
-          {({ handleChange, handleBlur, values, isSubmitting }) => (
-            <View style={styles.AreaFormularioEstilizado}>
+        >{({ handleChange, handleBlur, handleSubmit, values }) => (
+            <View style={globalStyles.AreaFormularioEstilizado}>
               <MiTextoEntrada
                 label="Nombre Completo"
                 icon="person"
@@ -137,33 +138,24 @@ const RegisterScreen = ({ navigation }) => {
                 setHidePassword={setHidePassword}
               />
 
-              <Text style={styles.CajaMensaje} type={messageType}>
+              <Text style={globalStyles.CajaMensaje} type={messageType}>
                 {message}
               </Text>
 
-              {!isSubmitting && (
+            
                 <TouchableOpacity
-                  style={styles.BotonEstilizado}
-                  onPress={() => navigation.navigate("Login")}
+                  style={globalStyles.BotonEstilizado}
+                  onPress={handleSubmit}
                 >
-                  <Text style={styles.BotonTexto}>Regístrate</Text>
+                  <Text style={globalStyles.BotonTexto}>Regístrate</Text>
                 </TouchableOpacity>
-              )}
+              
 
-              {!isSubmitting && (
-                <TouchableOpacity
-                  disabled={true}
-                  style={styles.BotonEstilizado}
-                >
-                  <ActivityIndicator size="large" color={Colores.primario} />
-                </TouchableOpacity>
-              )}
-
-              <View style={styles.VistaExtra}>
-                <Text style={styles.TextoExtra}>
+              <View style={globalStyles.VistaExtra}>
+                <Text style={globalStyles.TextoExtra}>
                   {cuenta}
                   <Text
-                    style={styles.ContenidoEnlaceTexto}
+                    style={globalStyles.ContenidoEnlaceTexto}
                     onPress={() => navigation.navigate("Login")}
                   >
                     {ini}
@@ -171,8 +163,8 @@ const RegisterScreen = ({ navigation }) => {
                 </Text>
               </View>
 
-              <View style={styles.Linea} />
-              <View style={styles.Linea} />
+              <View style={globalStyles.Linea} />
+              <View style={globalStyles.Linea} />
             </View>
           )}
         </Formik>
@@ -192,12 +184,12 @@ const MiTextoEntrada = ({
 }) => {
   return (
     <View>
-      <View style={styles.IconoIzquierdo}>
+      <View style={globalStyles.IconoIzquierdo}>
         <Octicons name={icon} size={30} color={Colors.marca} />
       </View>
-      <Text style={styles.EtiquetaEntradaEstilizado}>{label}</Text>
+      <Text style={globalStyles.EtiquetaEntradaEstilizado}>{label}</Text>
       {!isDate && (
-        <TextInput style={styles.TextoEntradaEstilizado} {...props} />
+        <TextInput style={globalStyles.TextoEntradaEstilizado} {...props} />
       )}
       {isDate && (
         <TouchableOpacity>
@@ -206,7 +198,7 @@ const MiTextoEntrada = ({
       )}
       {isPassword && (
         <TouchableOpacity
-          style={styles.IconoDerecho}
+          style={globalStyles.IconoDerecho}
           onPress={() => setHidePassword(!hidePassword)}
         >
           <Ionicons

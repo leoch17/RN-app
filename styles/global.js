@@ -167,4 +167,30 @@ export default {
     fontSize: 15,
     fontFamily: 'Ubuntu-Regular',
   },
-};
+  ActivityIndicator: {
+    size: "large",
+    color: Colors[1],
+  },
+  ButtonUpdate: {
+    padding: 10,
+    paddingBottom: 10,
+    borderRadius: 5,
+    marginBottom: 3,
+    backgroundColor: "#e58e26",
+    width: "90%",
+  },
+  buttonSave: {
+    paddingTop: 10,
+    paddingBottom: 10,
+    borderRadius: 5,
+    marginBottom: 3,
+    backgroundColor: "#10ac84",
+    width: "90%",
+  },
+  container: {
+    paddingHorizontal: 20,
+    paddingTop: 50,
+    backgroundColor: "#fff",
+    flex: 1,
+  }
+}

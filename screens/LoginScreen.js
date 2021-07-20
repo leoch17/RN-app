@@ -20,7 +20,6 @@ import { Colors } from "./../constants/index";
 
 // Cliente de axios
 import axios from "axios";
-import { Colores } from "../styles/styles";
 
 const LoginScreen = ({ navigation }) => {
   const [hidePassword, setHidePassword] = useState(true);
@@ -118,7 +117,7 @@ const LoginScreen = ({ navigation }) => {
                   disabled={true}
                   style={styles.BotonEstilizado}
                 >
-                  <ActivityIndicator size="large" color={Colores.primario} />
+                  <ActivityIndicator size="large" color={Colors[1]} />
                 </TouchableOpacity>
               )}
 

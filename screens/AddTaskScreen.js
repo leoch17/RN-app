@@ -87,7 +87,7 @@ const AddTaskScreen = ({ navigation }) => {
 
         Notifications.scheduleNotificationAsync({
             content: {
-              title: "Tarea apunto de vencer",
+              title: `Tarea ${task.nombre} apunto de vencer`,
               body: 'Tu tarea está a punto de vencer!!',
             },
             trigger: {

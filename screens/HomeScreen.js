@@ -12,22 +12,27 @@ import { getTasks } from "../api/api.tasks";
 const HomeScreen = ({ navigation }) => {
   const [tasks, setTasks] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
-  const navigat = useNavigation();
 
   const isFocused = useIsFocused();
 
   const loadTasks = async () => {
     const data = await getTasks();
     setTasks(data);
-    console.log(data);
+    //console.log(data);
   };
 
   useEffect(() => {
+    setRefreshing(true);
     loadTasks();
+    setRefreshing(false);
   }, [isFocused]);
 
+  
+
   const renderItem = ({ item }) => {
-    return <Task text={item.nombre}></Task>;
+    return <Task text={item.nombre}  onPress={() => {
+      navigation.navigate("TaskScreen", {id: item.id, nombre: item.nombre, descripcion: item.descripcion})
+    }}></Task>;
   };
 
   const onRefresh = React.useCallback(async () => {
@@ -43,7 +48,6 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => navigation.navigate("Update")}>
         <FlatList
           contentContainerStyle={globalStyles.listContainer}
           data={tasks}
@@ -57,12 +61,11 @@ const HomeScreen = ({ navigation }) => {
             />
           }
         />
-      </TouchableOpacity>
       <CustomButton
         text="Agregar nueva tarea"
         icon="plus"
         iconColor="#fff"
-        onPress={() => navigation.navigate("NewList")}
+        onPress={() => navigation.navigate("NewTask")}
       />
     </View>
   );

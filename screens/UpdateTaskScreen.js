@@ -6,18 +6,21 @@ import {
   Keyboard,
   Text,
   TouchableOpacity,
+  StyleSheet
 } from "react-native";
 import CustomButton from "../components/CustomButton";
 import { Colors } from "../constants";
 import globalStyles from "../styles/global";
-import { createTask, getTask, updateTask } from "../api";
-import { styles } from "../styles/styles";
+import { createTask, getTask, updateTask } from "../api/api.tasks";
 
 const DescriptionTextInput = (props) => {
   return <TextInput {...props} editable maxLength={200} />;
 };
 
 const UpdateTaskScreen = ({ navigation, route }) => {
+
+  console.log("Parámetros de taskscreen"+route.params)
+
   const [task, setTask] = useState({ nombre: "", descripcion: "" });
 
   const [editing, setEditing] = useState(false);
@@ -36,6 +39,8 @@ const UpdateTaskScreen = ({ navigation, route }) => {
       console.error(error);
     }
   };
+
+  console.log(route.params)
 
   useEffect(() => {
     if (route.params && route.params.id) {
@@ -70,19 +75,27 @@ const UpdateTaskScreen = ({ navigation, route }) => {
         />
 
         {!editing ? (
-          <TouchableOpacity style={styles.buttonSave} onPress={handleSubmit}>
-            <Text style={styles.BotonTexto}>Guardar Tarea</Text>
+          <TouchableOpacity style={globalStyles.buttonSave} onPress={handleSubmit}>
+            <Text style={globalStyles.BotonTexto}>Guardar Tarea</Text>
           </TouchableOpacity>
         ) : (
-          <TouchableOpacity style={styles.ButtonUpdate} onPress={handleSubmit}>
-            <Text style={styles.BotonTexto}>Editar Tarea</Text>
+          <TouchableOpacity style={globalStyles.ButtonUpdate} onPress={handleSubmit}>
+            <Text style={globalStyles.BotonTexto}>Editar Tarea</Text>
           </TouchableOpacity>
         )}
 
-        <CustomButton text="Crear tarea" onPress={() => handleSubmit()} round />
       </View>
     </TouchableWithoutFeedback>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    paddingHorizontal: 20,
+    paddingTop: 50,
+    backgroundColor: "#fff",
+    flex: 1,
+  },
+});
 
 export default UpdateTaskScreen;

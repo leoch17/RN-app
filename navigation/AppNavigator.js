@@ -9,6 +9,7 @@ import RegisterScreen from "../screens/RegisterScreen";
 import HomeScreen from "../screens/HomeScreen";
 import AddTaskScreen from "../screens/AddTaskScreen";
 import UpdateTaskScreen from "../screens/UpdateTaskScreen";
+import TaskScreen from "../screens/TaskScreen";
 
 const TasksStackNavigator = createStackNavigator();
 
@@ -59,7 +60,7 @@ const TaskNavigator = () => {
         }}
       />
       <TasksStackNavigator.Screen
-        name="NewList"
+        name="NewTask"
         component={AddTaskScreen}
         options={{ ...defautlStyles, title: "Agregar nueva tarea" }}
       />
@@ -70,6 +71,16 @@ const TaskNavigator = () => {
         options={{
           ...defautlStyles,
           title: "Editar Tareas",
+          headerTitleAlign: "center",
+        }}
+      />
+
+      <TasksStackNavigator.Screen
+        name="TaskScreen"
+        component={TaskScreen}
+        options={{
+          ...defautlStyles,
+          title: "Tarea",
           headerTitleAlign: "center",
         }}
       />
