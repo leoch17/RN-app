@@ -21,7 +21,7 @@ import globalStyles from "./../styles/global";
 import { Colors } from "./../constants/index";
 
 //Registrar
-import { createUser } from "../api/api.tasks";
+import { createUser } from "../api/api.users";
 
 const cuenta = "¿Ya tienes una cuenta? ";
 const ini = " Inicia Sesión";

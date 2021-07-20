@@ -14,6 +14,7 @@ import { createTask, getTask, updateTask } from "../api/api.tasks";
 import CustomButton from "../components/CustomButton";
 import { useIsFocused } from "@react-navigation/native";
 import { AntDesign } from "@expo/vector-icons";
+import { MaterialIcons } from '@expo/vector-icons';
 
 
 
