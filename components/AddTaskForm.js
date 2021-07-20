@@ -4,7 +4,6 @@ import React, { useState, useRef, ForwardedRef } from "react";
 import { Colors } from "../constants";
 import globalStyles from "../styles/global";
 
-
 //Components
 import { View, TouchableWithoutFeedback, StyleSheet, TextInput,
   Keyboard, Alert, Picker, Text, Button, Switch, SwitchComponent, TouchableOpacity } from "react-native";
@@ -43,7 +42,6 @@ const TaskTextInput = () => {
 }
 
 const NotificationPicker = () => {
-    
     const today = new Date();
 
   const [date1, setDate1] = useState(today);
@@ -73,8 +71,6 @@ const NotificationPicker = () => {
     //state changes according to switch
     //which will result in re-render the text
   };
-
-  
 
   const showMode = (currentMode) => {
     setShow(true);
