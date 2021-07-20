@@ -52,7 +52,7 @@ const TaskScreen = ({ navigation, route }) => {
         <Text style={styles.SubTitulo}>{taskdescription}</Text>
         <View style={styles.iconContainer}>
             <TouchableOpacity onPress={() => {
-                navigation.navigate("Update", {id: taskid})
+                navigation.navigate("Update", {id: taskid, nombre: taskname, descripcion: taskdescription})
             }}>
                 <AntDesign name="edit" size={26} style={styles.icon}></AntDesign>
             </TouchableOpacity>

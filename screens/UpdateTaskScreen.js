@@ -32,6 +32,7 @@ const UpdateTaskScreen = ({ navigation, route }) => {
       if (!editing) {
         await createTask(task);
       } else {
+        console.log(task)
         await updateTask(route.params.id, task);
       }
       navigation.navigate("Home");
@@ -59,7 +60,7 @@ const UpdateTaskScreen = ({ navigation, route }) => {
         <TextInput
           style={globalStyles.input}
           onChangeText={(text) => handleChange("nombre", text)}
-          placeholder="Nombre de tarea"
+          placeholder={route.params.nombre}
           placeholderTextColor={Colors[3]}
           value={task.nombre}
         />
@@ -69,7 +70,7 @@ const UpdateTaskScreen = ({ navigation, route }) => {
           multiline
           numberOfLines={4}
           onChangeText={(text) => handleChange("descripcion", text)}
-          placeholder="Describe la tarea, o anota lo que quieras :)"
+          placeholder={route.params.descripcion}
           placeholderTextColor={Colors[3]}
           value={task.descripcion}
         />
