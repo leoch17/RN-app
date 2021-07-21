@@ -18,6 +18,9 @@ import {
 import styles from "./../styles/global";
 import { Colors } from "./../constants/index";
 
+// 
+import { loginUser } from "../api/api.users";
+
 // Cliente de axios
 import axios from "axios";
 
@@ -26,6 +29,12 @@ const LoginScreen = ({ navigation }) => {
   const [message, setMessage] = useState();
   const [messageType, setMessageType] = useState();
 
+  const handleLogin = async () => {
+    const user = await loginUser()
+
+  }
+
+  /*
   const handleLoginScreen = (credentials, setSubmitting) => {
     handleMessage(null);
     const url = "https://wunderlist-back.herokuapp.com/";
@@ -56,6 +65,7 @@ const LoginScreen = ({ navigation }) => {
     setMessage(message);
     setMessageType(type);
   };
+  */
 
   return (
     <View style={styles.ContenedorEstilizado}>
@@ -64,26 +74,36 @@ const LoginScreen = ({ navigation }) => {
         <Text style={styles.SubTitulo}>Cuenta de Ingreso</Text>
 
         <Formik
-          initialValues={{ email: "", password: "" }}
+          initialValues={{ correo: "", clave: "" }}
           onSubmit={(values, { setSubmitting }) => {
-            if (values.email == "" || values.password == "") {
-              handleMessage("Por favor llenar todos los campos");
+            if (values.correo == "" || values.clave == "") {
+              //handleMessage("Por favor llenar todos los campos");
               setSubmitting(false);
             } else {
-              handleLoginScreen(values, setSubmitting);
+
+              //handleLoginScreen(values, setSubmitting);
+              try {
+              
+                console.log(values)
+                loginUser(values);
+                navigation.navigate("Home");
+                console.log("Login exitoso")
+              } catch (error) {
+                console.log(error)
+              }
             }
           }}
         >
-          {({ handleChange, handleBlur, values, isSubmitting }) => (
+          {({ handleChange, handleBlur, handleSubmit, values  }) => (
             <View style={styles.AreaFormularioEstilizado}>
               <MiTextoEntrada
                 label="Correo Electrónico"
                 icon="mail"
                 placeholder="andyj@gmail.com"
                 placeholderTextColor={Colors.luzoscuro}
-                onChangeText={handleChange("email")}
-                onBlur={handleBlur("email")}
-                value={values.email}
+                onChangeText={handleChange("correo")}
+                onBlur={handleBlur("correo")}
+                value={values.correo}
                 keyboardType="email-address"
               />
 
@@ -92,8 +112,8 @@ const LoginScreen = ({ navigation }) => {
                 icon="lock"
                 placeholder="***************"
                 placeholderTextColor={Colors.luzoscuro}
-                onChangeText={handleChange("password")}
-                onBlur={handleBlur("password")}
+                onChangeText={handleChange("clave")}
+                onBlur={handleBlur("clave")}
                 value={values.password}
                 secureTextEntry={hidePassword}
                 isPassword={true}
@@ -103,23 +123,13 @@ const LoginScreen = ({ navigation }) => {
               <Text style={styles.CajaMensaje} type={messageType}>
                 {message}
               </Text>
-              {!isSubmitting && (
-                <TouchableOpacity
+              <TouchableOpacity
                   style={styles.BotonEstilizado}
-                  onPress={() => navigation.navigate("Home")}
+                  onPress={handleSubmit}
                 >
                   <Text style={styles.BotonTexto}>Iniciar Sesión</Text>
                 </TouchableOpacity>
-              )}
-
-              {!isSubmitting && (
-                <TouchableOpacity
-                  disabled={true}
-                  style={styles.BotonEstilizado}
-                >
-                  <ActivityIndicator size="large" color={Colors[1]} />
-                </TouchableOpacity>
-              )}
+              
 
               <View style={styles.VistaExtra}>
                 <Text style={styles.TextoExtra}>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { View, StyleSheet, ActivityIndicator, FlatList, RefreshControl, TextInput, TouchableOpacity } from "react-native";
+import SearchBar from "../components/SearchBar";
 import { Colors } from "../constants/index";
 
 import globalStyles from "../styles/global";
@@ -48,6 +49,7 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <SearchBar></SearchBar>
         <FlatList
           contentContainerStyle={globalStyles.listContainer}
           data={tasks}
