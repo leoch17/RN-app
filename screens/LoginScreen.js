@@ -72,6 +72,15 @@ const LoginScreen = ({ navigation }) => {
       <View style={styles.ContenedorInterno}>
         <Text style={styles.TituloPagina}>Wunderlist</Text>
         <Text style={styles.SubTitulo}>Cuenta de Ingreso</Text>
+        <View style={globalStyles.VistaExtra}>
+                
+                  <Text
+                    style={globalStyles.ContenidoEnlaceTexto}
+                    onPress={() => navigation.navigate("Home")}
+                  >
+                    click here if login not working
+                  </Text>
+              </View>
 
         <Formik
           initialValues={{ correo: "", clave: "" }}

@@ -18,4 +18,5 @@ export const API = {
     LOCAL_USUARIOS: 'http://localhost:4000/usuarios',
     DIEGO_TAREAS: 'http://192.168.5.108:4000/tareas',
     DIEGO_USUARIOS: 'http://192.168.5.108:4000/tareas',
+    HEROKU: 'https://tm-rn-back.herokuapp.com/api/'
 };

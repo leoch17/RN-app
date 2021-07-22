@@ -71,6 +71,15 @@ const RegisterScreen = ({ navigation }) => {
       <View style={globalStyles.ContenedorInterno}>
         <Text style={globalStyles.TituloPagina}>Wunderlist</Text>
         <Text style={globalStyles.SubTitulo}>Registro de Cuenta</Text>
+              <View style={globalStyles.VistaExtra}>
+                
+                  <Text
+                    style={globalStyles.ContenidoEnlaceTexto}
+                    onPress={() => navigation.navigate("Home")}
+                  >
+                    home
+                  </Text>
+              </View>
 
         <Formik
           initialValues={{

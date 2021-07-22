@@ -19,7 +19,7 @@ const HomeScreen = ({ navigation }) => {
   const loadTasks = async () => {
     const data = await getTasks();
     setTasks(data);
-    //console.log(data);
+    console.log(data);
   };
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <SearchBar></SearchBar>
+      {/*<SearchBar></SearchBar>*/}
         <FlatList
           contentContainerStyle={globalStyles.listContainer}
           data={tasks}
