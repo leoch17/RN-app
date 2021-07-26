@@ -15,8 +15,14 @@ export const COLORS = {
   LightGray2: "#F6F6F7",
   LightGray3: "#EFEFF1",
   LightGray4: "#F8F8F9",
+  MediumGray: "#9CA3AF",
+  MediumGray2: "#898C95",
+  DarkGray: "#20232a",
   transparent: "transparent",
-  darkgrey: "#898C95",
+  bluishgrey: "#1F2937",
+  bluishpurple: "#463FAF",
+
+  brand: "#602BD9",
 };
 
 export const SIZES = {
