@@ -1,5 +1,5 @@
 export const Colors = {
-    1: '#463FAF',
+    1: '#160d75',
     2: '#ESE6F8',
     3: '#ddd',
     4: '#aaa',
@@ -14,9 +14,5 @@ export const Colors = {
 };
 
 export const API = {
-    LOCAL_TAREAS: 'http://localhost:4000/tareas',
-    LOCAL_USUARIOS: 'http://localhost:4000/usuarios',
-    DIEGO_TAREAS: 'http://192.168.5.108:4000/tareas',
-    DIEGO_USUARIOS: 'http://192.168.5.108:4000/tareas',
-    HEROKU: 'https://tm-rn-back.herokuapp.com/api/'
+    HEROKU: 'https://p3-rn-back.herokuapp.com/api/'
 };

@@ -11,7 +11,7 @@ import {
 import CustomButton from "../components/CustomButton";
 import { Colors } from "../constants";
 import globalStyles from "../styles/global";
-import { createTask, getTask, updateTask } from "../api/api.tasks";
+//import { createTask, getTask, updateTask } from "../api/api.tasks";
 
 const DescriptionTextInput = (props) => {
   return <TextInput {...props} editable maxLength={200} />;

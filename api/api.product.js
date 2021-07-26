@@ -1,7 +1,7 @@
 import { API } from "../constants"
 
-export const getTasks = async () => {
-    const res = await fetch(API.HEROKU+"tareas")
+export const getProducts = async () => {
+    const res = await fetch(API.HEROKU+"products")
     return await res.json()
 }
 

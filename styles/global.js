@@ -15,11 +15,11 @@ export default {
   },
   listItem: {
     backgroundColor: '#fff',
-    borderRadius: 20,
+    borderRadius: 10,
     padding: 20,
     marginBottom: 10,
-    borderLeftWidth: 3.5,
-    borderLeftColor: Colors.luzoscuro,
+    borderWidth: 0.5,
+    borderColor: Colors.luzoscuro,
     flexDirection: 'row',
   },
   input: {

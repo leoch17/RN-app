@@ -69,13 +69,13 @@ const RegisterScreen = ({ navigation }) => {
   return (
     <ScrollView style={globalStyles.ContenedorEstilizado}>
       <View style={globalStyles.ContenedorInterno}>
-        <Text style={globalStyles.TituloPagina}>Wunderlist</Text>
+        <Text style={globalStyles.TituloPagina}>Task Master</Text>
         <Text style={globalStyles.SubTitulo}>Registro de Cuenta</Text>
               <View style={globalStyles.VistaExtra}>
                 
                   <Text
                     style={globalStyles.ContenidoEnlaceTexto}
-                    onPress={() => navigation.navigate("Home")}
+                    onPress={() => navigation.navigate("BusinessHome")}
                   >
                     home
                   </Text>
@@ -103,7 +103,7 @@ const RegisterScreen = ({ navigation }) => {
         >{({ handleChange, handleBlur, handleSubmit, values }) => (
             <View style={globalStyles.AreaFormularioEstilizado}>
               <MiTextoEntrada
-                label="Nombre Completo"
+                label="Nombre del establecimiento"
                 icon="person"
                 placeholder="Luis Acurero"
                 placeholderTextColor={Colors.luzoscuro}
@@ -125,7 +125,7 @@ const RegisterScreen = ({ navigation }) => {
               <MiTextoEntrada
                 label="Correo Electrónico"
                 icon="mail"
-                placeholder="LuisAcu@gmail.com"
+                placeholder="juan-admin@pizzeria.com"
                 placeholderTextColor={Colors.luzoscuro}
                 onChangeText={handleChange("correo")}
                 onBlur={handleBlur("correo")}
